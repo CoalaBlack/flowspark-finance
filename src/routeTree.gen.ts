@@ -12,8 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MovimentacoesTrocaChequesRouteImport } from './routes/movimentacoes.troca-cheques'
 import { Route as MovimentacoesTransferenciasRouteImport } from './routes/movimentacoes.transferencias'
+import { Route as MovimentacoesTransferenciaRotasRouteImport } from './routes/movimentacoes.transferencia-rotas'
 import { Route as MovimentacoesReceitasRouteImport } from './routes/movimentacoes.receitas'
+import { Route as MovimentacoesLogAtividadesRouteImport } from './routes/movimentacoes.log-atividades'
+import { Route as MovimentacoesHistoricoAppsRouteImport } from './routes/movimentacoes.historico-apps'
+import { Route as MovimentacoesEmprestimosVencidosRouteImport } from './routes/movimentacoes.emprestimos-vencidos'
 import { Route as MovimentacoesDespesasRouteImport } from './routes/movimentacoes.despesas'
+import { Route as MovimentacoesAportesRetiradasRouteImport } from './routes/movimentacoes.aportes-retiradas'
 import { Route as FinanceiroFluxoCaixaRouteImport } from './routes/financeiro.fluxo-caixa'
 import { Route as FinanceiroContasReceberRouteImport } from './routes/financeiro.contas-receber'
 import { Route as FinanceiroContasPagarRouteImport } from './routes/financeiro.contas-pagar'
@@ -23,8 +28,12 @@ import { Route as CobrancaRenegociacoesRouteImport } from './routes/cobranca.ren
 import { Route as CobrancaNovoEmprestimoRouteImport } from './routes/cobranca.novo-emprestimo'
 import { Route as CobrancaEmprestimosRouteImport } from './routes/cobranca.emprestimos'
 import { Route as CobrancaCobrancasDiaRouteImport } from './routes/cobranca.cobrancas-dia'
+import { Route as CadastrosUsuariosRouteImport } from './routes/cadastros.usuarios'
+import { Route as CadastrosTipoEstabelecimentoRouteImport } from './routes/cadastros.tipo-estabelecimento'
 import { Route as CadastrosRotasRouteImport } from './routes/cadastros.rotas'
+import { Route as CadastrosFornecedoresRouteImport } from './routes/cadastros.fornecedores'
 import { Route as CadastrosFormasRecebimentoRouteImport } from './routes/cadastros.formas-recebimento'
+import { Route as CadastrosFeriadosRouteImport } from './routes/cadastros.feriados'
 import { Route as CadastrosCredorPromissoriaRouteImport } from './routes/cadastros.credor-promissoria'
 import { Route as CadastrosContasBancariasRouteImport } from './routes/cadastros.contas-bancarias'
 import { Route as CadastrosConsultoresRouteImport } from './routes/cadastros.consultores'
@@ -52,16 +61,46 @@ const MovimentacoesTransferenciasRoute =
     path: '/movimentacoes/transferencias',
     getParentRoute: () => rootRouteImport,
   } as any)
+const MovimentacoesTransferenciaRotasRoute =
+  MovimentacoesTransferenciaRotasRouteImport.update({
+    id: '/movimentacoes/transferencia-rotas',
+    path: '/movimentacoes/transferencia-rotas',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const MovimentacoesReceitasRoute = MovimentacoesReceitasRouteImport.update({
   id: '/movimentacoes/receitas',
   path: '/movimentacoes/receitas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MovimentacoesLogAtividadesRoute =
+  MovimentacoesLogAtividadesRouteImport.update({
+    id: '/movimentacoes/log-atividades',
+    path: '/movimentacoes/log-atividades',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MovimentacoesHistoricoAppsRoute =
+  MovimentacoesHistoricoAppsRouteImport.update({
+    id: '/movimentacoes/historico-apps',
+    path: '/movimentacoes/historico-apps',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MovimentacoesEmprestimosVencidosRoute =
+  MovimentacoesEmprestimosVencidosRouteImport.update({
+    id: '/movimentacoes/emprestimos-vencidos',
+    path: '/movimentacoes/emprestimos-vencidos',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const MovimentacoesDespesasRoute = MovimentacoesDespesasRouteImport.update({
   id: '/movimentacoes/despesas',
   path: '/movimentacoes/despesas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MovimentacoesAportesRetiradasRoute =
+  MovimentacoesAportesRetiradasRouteImport.update({
+    id: '/movimentacoes/aportes-retiradas',
+    path: '/movimentacoes/aportes-retiradas',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const FinanceiroFluxoCaixaRoute = FinanceiroFluxoCaixaRouteImport.update({
   id: '/financeiro/fluxo-caixa',
   path: '/financeiro/fluxo-caixa',
@@ -107,9 +146,25 @@ const CobrancaCobrancasDiaRoute = CobrancaCobrancasDiaRouteImport.update({
   path: '/cobranca/cobrancas-dia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CadastrosUsuariosRoute = CadastrosUsuariosRouteImport.update({
+  id: '/cadastros/usuarios',
+  path: '/cadastros/usuarios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrosTipoEstabelecimentoRoute =
+  CadastrosTipoEstabelecimentoRouteImport.update({
+    id: '/cadastros/tipo-estabelecimento',
+    path: '/cadastros/tipo-estabelecimento',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CadastrosRotasRoute = CadastrosRotasRouteImport.update({
   id: '/cadastros/rotas',
   path: '/cadastros/rotas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrosFornecedoresRoute = CadastrosFornecedoresRouteImport.update({
+  id: '/cadastros/fornecedores',
+  path: '/cadastros/fornecedores',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CadastrosFormasRecebimentoRoute =
@@ -118,6 +173,11 @@ const CadastrosFormasRecebimentoRoute =
     path: '/cadastros/formas-recebimento',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CadastrosFeriadosRoute = CadastrosFeriadosRouteImport.update({
+  id: '/cadastros/feriados',
+  path: '/cadastros/feriados',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CadastrosCredorPromissoriaRoute =
   CadastrosCredorPromissoriaRouteImport.update({
     id: '/cadastros/credor-promissoria',
@@ -177,8 +237,12 @@ export interface FileRoutesByFullPath {
   '/cadastros/consultores': typeof CadastrosConsultoresRoute
   '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
   '/cadastros/credor-promissoria': typeof CadastrosCredorPromissoriaRoute
+  '/cadastros/feriados': typeof CadastrosFeriadosRoute
   '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
+  '/cadastros/fornecedores': typeof CadastrosFornecedoresRoute
   '/cadastros/rotas': typeof CadastrosRotasRoute
+  '/cadastros/tipo-estabelecimento': typeof CadastrosTipoEstabelecimentoRoute
+  '/cadastros/usuarios': typeof CadastrosUsuariosRoute
   '/cobranca/cobrancas-dia': typeof CobrancaCobrancasDiaRoute
   '/cobranca/emprestimos': typeof CobrancaEmprestimosRoute
   '/cobranca/novo-emprestimo': typeof CobrancaNovoEmprestimoRoute
@@ -188,8 +252,13 @@ export interface FileRoutesByFullPath {
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
   '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
   '/financeiro/fluxo-caixa': typeof FinanceiroFluxoCaixaRoute
+  '/movimentacoes/aportes-retiradas': typeof MovimentacoesAportesRetiradasRoute
   '/movimentacoes/despesas': typeof MovimentacoesDespesasRoute
+  '/movimentacoes/emprestimos-vencidos': typeof MovimentacoesEmprestimosVencidosRoute
+  '/movimentacoes/historico-apps': typeof MovimentacoesHistoricoAppsRoute
+  '/movimentacoes/log-atividades': typeof MovimentacoesLogAtividadesRoute
   '/movimentacoes/receitas': typeof MovimentacoesReceitasRoute
+  '/movimentacoes/transferencia-rotas': typeof MovimentacoesTransferenciaRotasRoute
   '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
   '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
 }
@@ -204,8 +273,12 @@ export interface FileRoutesByTo {
   '/cadastros/consultores': typeof CadastrosConsultoresRoute
   '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
   '/cadastros/credor-promissoria': typeof CadastrosCredorPromissoriaRoute
+  '/cadastros/feriados': typeof CadastrosFeriadosRoute
   '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
+  '/cadastros/fornecedores': typeof CadastrosFornecedoresRoute
   '/cadastros/rotas': typeof CadastrosRotasRoute
+  '/cadastros/tipo-estabelecimento': typeof CadastrosTipoEstabelecimentoRoute
+  '/cadastros/usuarios': typeof CadastrosUsuariosRoute
   '/cobranca/cobrancas-dia': typeof CobrancaCobrancasDiaRoute
   '/cobranca/emprestimos': typeof CobrancaEmprestimosRoute
   '/cobranca/novo-emprestimo': typeof CobrancaNovoEmprestimoRoute
@@ -215,8 +288,13 @@ export interface FileRoutesByTo {
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
   '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
   '/financeiro/fluxo-caixa': typeof FinanceiroFluxoCaixaRoute
+  '/movimentacoes/aportes-retiradas': typeof MovimentacoesAportesRetiradasRoute
   '/movimentacoes/despesas': typeof MovimentacoesDespesasRoute
+  '/movimentacoes/emprestimos-vencidos': typeof MovimentacoesEmprestimosVencidosRoute
+  '/movimentacoes/historico-apps': typeof MovimentacoesHistoricoAppsRoute
+  '/movimentacoes/log-atividades': typeof MovimentacoesLogAtividadesRoute
   '/movimentacoes/receitas': typeof MovimentacoesReceitasRoute
+  '/movimentacoes/transferencia-rotas': typeof MovimentacoesTransferenciaRotasRoute
   '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
   '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
 }
@@ -232,8 +310,12 @@ export interface FileRoutesById {
   '/cadastros/consultores': typeof CadastrosConsultoresRoute
   '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
   '/cadastros/credor-promissoria': typeof CadastrosCredorPromissoriaRoute
+  '/cadastros/feriados': typeof CadastrosFeriadosRoute
   '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
+  '/cadastros/fornecedores': typeof CadastrosFornecedoresRoute
   '/cadastros/rotas': typeof CadastrosRotasRoute
+  '/cadastros/tipo-estabelecimento': typeof CadastrosTipoEstabelecimentoRoute
+  '/cadastros/usuarios': typeof CadastrosUsuariosRoute
   '/cobranca/cobrancas-dia': typeof CobrancaCobrancasDiaRoute
   '/cobranca/emprestimos': typeof CobrancaEmprestimosRoute
   '/cobranca/novo-emprestimo': typeof CobrancaNovoEmprestimoRoute
@@ -243,8 +325,13 @@ export interface FileRoutesById {
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
   '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
   '/financeiro/fluxo-caixa': typeof FinanceiroFluxoCaixaRoute
+  '/movimentacoes/aportes-retiradas': typeof MovimentacoesAportesRetiradasRoute
   '/movimentacoes/despesas': typeof MovimentacoesDespesasRoute
+  '/movimentacoes/emprestimos-vencidos': typeof MovimentacoesEmprestimosVencidosRoute
+  '/movimentacoes/historico-apps': typeof MovimentacoesHistoricoAppsRoute
+  '/movimentacoes/log-atividades': typeof MovimentacoesLogAtividadesRoute
   '/movimentacoes/receitas': typeof MovimentacoesReceitasRoute
+  '/movimentacoes/transferencia-rotas': typeof MovimentacoesTransferenciaRotasRoute
   '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
   '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
 }
@@ -261,8 +348,12 @@ export interface FileRouteTypes {
     | '/cadastros/consultores'
     | '/cadastros/contas-bancarias'
     | '/cadastros/credor-promissoria'
+    | '/cadastros/feriados'
     | '/cadastros/formas-recebimento'
+    | '/cadastros/fornecedores'
     | '/cadastros/rotas'
+    | '/cadastros/tipo-estabelecimento'
+    | '/cadastros/usuarios'
     | '/cobranca/cobrancas-dia'
     | '/cobranca/emprestimos'
     | '/cobranca/novo-emprestimo'
@@ -272,8 +363,13 @@ export interface FileRouteTypes {
     | '/financeiro/contas-pagar'
     | '/financeiro/contas-receber'
     | '/financeiro/fluxo-caixa'
+    | '/movimentacoes/aportes-retiradas'
     | '/movimentacoes/despesas'
+    | '/movimentacoes/emprestimos-vencidos'
+    | '/movimentacoes/historico-apps'
+    | '/movimentacoes/log-atividades'
     | '/movimentacoes/receitas'
+    | '/movimentacoes/transferencia-rotas'
     | '/movimentacoes/transferencias'
     | '/movimentacoes/troca-cheques'
   fileRoutesByTo: FileRoutesByTo
@@ -288,8 +384,12 @@ export interface FileRouteTypes {
     | '/cadastros/consultores'
     | '/cadastros/contas-bancarias'
     | '/cadastros/credor-promissoria'
+    | '/cadastros/feriados'
     | '/cadastros/formas-recebimento'
+    | '/cadastros/fornecedores'
     | '/cadastros/rotas'
+    | '/cadastros/tipo-estabelecimento'
+    | '/cadastros/usuarios'
     | '/cobranca/cobrancas-dia'
     | '/cobranca/emprestimos'
     | '/cobranca/novo-emprestimo'
@@ -299,8 +399,13 @@ export interface FileRouteTypes {
     | '/financeiro/contas-pagar'
     | '/financeiro/contas-receber'
     | '/financeiro/fluxo-caixa'
+    | '/movimentacoes/aportes-retiradas'
     | '/movimentacoes/despesas'
+    | '/movimentacoes/emprestimos-vencidos'
+    | '/movimentacoes/historico-apps'
+    | '/movimentacoes/log-atividades'
     | '/movimentacoes/receitas'
+    | '/movimentacoes/transferencia-rotas'
     | '/movimentacoes/transferencias'
     | '/movimentacoes/troca-cheques'
   id:
@@ -315,8 +420,12 @@ export interface FileRouteTypes {
     | '/cadastros/consultores'
     | '/cadastros/contas-bancarias'
     | '/cadastros/credor-promissoria'
+    | '/cadastros/feriados'
     | '/cadastros/formas-recebimento'
+    | '/cadastros/fornecedores'
     | '/cadastros/rotas'
+    | '/cadastros/tipo-estabelecimento'
+    | '/cadastros/usuarios'
     | '/cobranca/cobrancas-dia'
     | '/cobranca/emprestimos'
     | '/cobranca/novo-emprestimo'
@@ -326,8 +435,13 @@ export interface FileRouteTypes {
     | '/financeiro/contas-pagar'
     | '/financeiro/contas-receber'
     | '/financeiro/fluxo-caixa'
+    | '/movimentacoes/aportes-retiradas'
     | '/movimentacoes/despesas'
+    | '/movimentacoes/emprestimos-vencidos'
+    | '/movimentacoes/historico-apps'
+    | '/movimentacoes/log-atividades'
     | '/movimentacoes/receitas'
+    | '/movimentacoes/transferencia-rotas'
     | '/movimentacoes/transferencias'
     | '/movimentacoes/troca-cheques'
   fileRoutesById: FileRoutesById
@@ -343,8 +457,12 @@ export interface RootRouteChildren {
   CadastrosConsultoresRoute: typeof CadastrosConsultoresRoute
   CadastrosContasBancariasRoute: typeof CadastrosContasBancariasRoute
   CadastrosCredorPromissoriaRoute: typeof CadastrosCredorPromissoriaRoute
+  CadastrosFeriadosRoute: typeof CadastrosFeriadosRoute
   CadastrosFormasRecebimentoRoute: typeof CadastrosFormasRecebimentoRoute
+  CadastrosFornecedoresRoute: typeof CadastrosFornecedoresRoute
   CadastrosRotasRoute: typeof CadastrosRotasRoute
+  CadastrosTipoEstabelecimentoRoute: typeof CadastrosTipoEstabelecimentoRoute
+  CadastrosUsuariosRoute: typeof CadastrosUsuariosRoute
   CobrancaCobrancasDiaRoute: typeof CobrancaCobrancasDiaRoute
   CobrancaEmprestimosRoute: typeof CobrancaEmprestimosRoute
   CobrancaNovoEmprestimoRoute: typeof CobrancaNovoEmprestimoRoute
@@ -354,8 +472,13 @@ export interface RootRouteChildren {
   FinanceiroContasPagarRoute: typeof FinanceiroContasPagarRoute
   FinanceiroContasReceberRoute: typeof FinanceiroContasReceberRoute
   FinanceiroFluxoCaixaRoute: typeof FinanceiroFluxoCaixaRoute
+  MovimentacoesAportesRetiradasRoute: typeof MovimentacoesAportesRetiradasRoute
   MovimentacoesDespesasRoute: typeof MovimentacoesDespesasRoute
+  MovimentacoesEmprestimosVencidosRoute: typeof MovimentacoesEmprestimosVencidosRoute
+  MovimentacoesHistoricoAppsRoute: typeof MovimentacoesHistoricoAppsRoute
+  MovimentacoesLogAtividadesRoute: typeof MovimentacoesLogAtividadesRoute
   MovimentacoesReceitasRoute: typeof MovimentacoesReceitasRoute
+  MovimentacoesTransferenciaRotasRoute: typeof MovimentacoesTransferenciaRotasRoute
   MovimentacoesTransferenciasRoute: typeof MovimentacoesTransferenciasRoute
   MovimentacoesTrocaChequesRoute: typeof MovimentacoesTrocaChequesRoute
 }
@@ -383,6 +506,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MovimentacoesTransferenciasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/movimentacoes/transferencia-rotas': {
+      id: '/movimentacoes/transferencia-rotas'
+      path: '/movimentacoes/transferencia-rotas'
+      fullPath: '/movimentacoes/transferencia-rotas'
+      preLoaderRoute: typeof MovimentacoesTransferenciaRotasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/movimentacoes/receitas': {
       id: '/movimentacoes/receitas'
       path: '/movimentacoes/receitas'
@@ -390,11 +520,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MovimentacoesReceitasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/movimentacoes/log-atividades': {
+      id: '/movimentacoes/log-atividades'
+      path: '/movimentacoes/log-atividades'
+      fullPath: '/movimentacoes/log-atividades'
+      preLoaderRoute: typeof MovimentacoesLogAtividadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentacoes/historico-apps': {
+      id: '/movimentacoes/historico-apps'
+      path: '/movimentacoes/historico-apps'
+      fullPath: '/movimentacoes/historico-apps'
+      preLoaderRoute: typeof MovimentacoesHistoricoAppsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentacoes/emprestimos-vencidos': {
+      id: '/movimentacoes/emprestimos-vencidos'
+      path: '/movimentacoes/emprestimos-vencidos'
+      fullPath: '/movimentacoes/emprestimos-vencidos'
+      preLoaderRoute: typeof MovimentacoesEmprestimosVencidosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/movimentacoes/despesas': {
       id: '/movimentacoes/despesas'
       path: '/movimentacoes/despesas'
       fullPath: '/movimentacoes/despesas'
       preLoaderRoute: typeof MovimentacoesDespesasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentacoes/aportes-retiradas': {
+      id: '/movimentacoes/aportes-retiradas'
+      path: '/movimentacoes/aportes-retiradas'
+      fullPath: '/movimentacoes/aportes-retiradas'
+      preLoaderRoute: typeof MovimentacoesAportesRetiradasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/financeiro/fluxo-caixa': {
@@ -460,6 +618,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CobrancaCobrancasDiaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cadastros/usuarios': {
+      id: '/cadastros/usuarios'
+      path: '/cadastros/usuarios'
+      fullPath: '/cadastros/usuarios'
+      preLoaderRoute: typeof CadastrosUsuariosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/tipo-estabelecimento': {
+      id: '/cadastros/tipo-estabelecimento'
+      path: '/cadastros/tipo-estabelecimento'
+      fullPath: '/cadastros/tipo-estabelecimento'
+      preLoaderRoute: typeof CadastrosTipoEstabelecimentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cadastros/rotas': {
       id: '/cadastros/rotas'
       path: '/cadastros/rotas'
@@ -467,11 +639,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CadastrosRotasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cadastros/fornecedores': {
+      id: '/cadastros/fornecedores'
+      path: '/cadastros/fornecedores'
+      fullPath: '/cadastros/fornecedores'
+      preLoaderRoute: typeof CadastrosFornecedoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cadastros/formas-recebimento': {
       id: '/cadastros/formas-recebimento'
       path: '/cadastros/formas-recebimento'
       fullPath: '/cadastros/formas-recebimento'
       preLoaderRoute: typeof CadastrosFormasRecebimentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/feriados': {
+      id: '/cadastros/feriados'
+      path: '/cadastros/feriados'
+      fullPath: '/cadastros/feriados'
+      preLoaderRoute: typeof CadastrosFeriadosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cadastros/credor-promissoria': {
@@ -551,8 +737,12 @@ const rootRouteChildren: RootRouteChildren = {
   CadastrosConsultoresRoute: CadastrosConsultoresRoute,
   CadastrosContasBancariasRoute: CadastrosContasBancariasRoute,
   CadastrosCredorPromissoriaRoute: CadastrosCredorPromissoriaRoute,
+  CadastrosFeriadosRoute: CadastrosFeriadosRoute,
   CadastrosFormasRecebimentoRoute: CadastrosFormasRecebimentoRoute,
+  CadastrosFornecedoresRoute: CadastrosFornecedoresRoute,
   CadastrosRotasRoute: CadastrosRotasRoute,
+  CadastrosTipoEstabelecimentoRoute: CadastrosTipoEstabelecimentoRoute,
+  CadastrosUsuariosRoute: CadastrosUsuariosRoute,
   CobrancaCobrancasDiaRoute: CobrancaCobrancasDiaRoute,
   CobrancaEmprestimosRoute: CobrancaEmprestimosRoute,
   CobrancaNovoEmprestimoRoute: CobrancaNovoEmprestimoRoute,
@@ -562,8 +752,13 @@ const rootRouteChildren: RootRouteChildren = {
   FinanceiroContasPagarRoute: FinanceiroContasPagarRoute,
   FinanceiroContasReceberRoute: FinanceiroContasReceberRoute,
   FinanceiroFluxoCaixaRoute: FinanceiroFluxoCaixaRoute,
+  MovimentacoesAportesRetiradasRoute: MovimentacoesAportesRetiradasRoute,
   MovimentacoesDespesasRoute: MovimentacoesDespesasRoute,
+  MovimentacoesEmprestimosVencidosRoute: MovimentacoesEmprestimosVencidosRoute,
+  MovimentacoesHistoricoAppsRoute: MovimentacoesHistoricoAppsRoute,
+  MovimentacoesLogAtividadesRoute: MovimentacoesLogAtividadesRoute,
   MovimentacoesReceitasRoute: MovimentacoesReceitasRoute,
+  MovimentacoesTransferenciaRotasRoute: MovimentacoesTransferenciaRotasRoute,
   MovimentacoesTransferenciasRoute: MovimentacoesTransferenciasRoute,
   MovimentacoesTrocaChequesRoute: MovimentacoesTrocaChequesRoute,
 }
