@@ -50,13 +50,13 @@ function Page() {
             <p className="text-sm text-primary-foreground/80 mt-1">Gestão completa da sua carteira de clientes</p>
           </div>
           <div className="ml-auto hidden md:flex items-center gap-3">
-            <div className="rounded-2xl bg-white/15 px-4 py-2 backdrop-blur ring-1 ring-white/20">
-              <p className="text-[10px] uppercase tracking-wider text-white/80">Total</p>
-              <p className="text-xl font-bold text-white">{data.length}</p>
+            <div className="rounded-2xl bg-primary-foreground/15 px-4 py-2 backdrop-blur ring-1 ring-primary-foreground/20">
+              <p className="text-[10px] uppercase tracking-wider text-primary-foreground/80">Total</p>
+              <p className="text-xl font-bold text-primary-foreground">{data.length}</p>
             </div>
-            <div className="rounded-2xl bg-white/15 px-4 py-2 backdrop-blur ring-1 ring-white/20">
-              <p className="text-[10px] uppercase tracking-wider text-white/80">Limite Total</p>
-              <p className="text-xl font-bold text-white">
+            <div className="rounded-2xl bg-primary-foreground/15 px-4 py-2 backdrop-blur ring-1 ring-primary-foreground/20">
+              <p className="text-[10px] uppercase tracking-wider text-primary-foreground/80">Limite Total</p>
+              <p className="text-xl font-bold text-primary-foreground">
                 R$ {data.reduce((a, b) => a + b.limite, 0).toLocaleString("pt-BR")}
               </p>
             </div>
