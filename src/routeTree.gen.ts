@@ -10,33 +10,130 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CadastrosRotasRouteImport } from './routes/cadastros.rotas'
+import { Route as CadastrosFormasRecebimentoRouteImport } from './routes/cadastros.formas-recebimento'
+import { Route as CadastrosContasBancariasRouteImport } from './routes/cadastros.contas-bancarias'
+import { Route as CadastrosConsultoresRouteImport } from './routes/cadastros.consultores'
+import { Route as CadastrosClientesRouteImport } from './routes/cadastros.clientes'
+import { Route as CadastrosCentrosCustoRouteImport } from './routes/cadastros.centros-custo'
+import { Route as CadastrosCategoriasRouteImport } from './routes/cadastros.categorias'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CadastrosRotasRoute = CadastrosRotasRouteImport.update({
+  id: '/cadastros/rotas',
+  path: '/cadastros/rotas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrosFormasRecebimentoRoute =
+  CadastrosFormasRecebimentoRouteImport.update({
+    id: '/cadastros/formas-recebimento',
+    path: '/cadastros/formas-recebimento',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CadastrosContasBancariasRoute =
+  CadastrosContasBancariasRouteImport.update({
+    id: '/cadastros/contas-bancarias',
+    path: '/cadastros/contas-bancarias',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CadastrosConsultoresRoute = CadastrosConsultoresRouteImport.update({
+  id: '/cadastros/consultores',
+  path: '/cadastros/consultores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrosClientesRoute = CadastrosClientesRouteImport.update({
+  id: '/cadastros/clientes',
+  path: '/cadastros/clientes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrosCentrosCustoRoute = CadastrosCentrosCustoRouteImport.update({
+  id: '/cadastros/centros-custo',
+  path: '/cadastros/centros-custo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrosCategoriasRoute = CadastrosCategoriasRouteImport.update({
+  id: '/cadastros/categorias',
+  path: '/cadastros/categorias',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cadastros/categorias': typeof CadastrosCategoriasRoute
+  '/cadastros/centros-custo': typeof CadastrosCentrosCustoRoute
+  '/cadastros/clientes': typeof CadastrosClientesRoute
+  '/cadastros/consultores': typeof CadastrosConsultoresRoute
+  '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
+  '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
+  '/cadastros/rotas': typeof CadastrosRotasRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cadastros/categorias': typeof CadastrosCategoriasRoute
+  '/cadastros/centros-custo': typeof CadastrosCentrosCustoRoute
+  '/cadastros/clientes': typeof CadastrosClientesRoute
+  '/cadastros/consultores': typeof CadastrosConsultoresRoute
+  '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
+  '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
+  '/cadastros/rotas': typeof CadastrosRotasRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cadastros/categorias': typeof CadastrosCategoriasRoute
+  '/cadastros/centros-custo': typeof CadastrosCentrosCustoRoute
+  '/cadastros/clientes': typeof CadastrosClientesRoute
+  '/cadastros/consultores': typeof CadastrosConsultoresRoute
+  '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
+  '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
+  '/cadastros/rotas': typeof CadastrosRotasRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/cadastros/categorias'
+    | '/cadastros/centros-custo'
+    | '/cadastros/clientes'
+    | '/cadastros/consultores'
+    | '/cadastros/contas-bancarias'
+    | '/cadastros/formas-recebimento'
+    | '/cadastros/rotas'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/cadastros/categorias'
+    | '/cadastros/centros-custo'
+    | '/cadastros/clientes'
+    | '/cadastros/consultores'
+    | '/cadastros/contas-bancarias'
+    | '/cadastros/formas-recebimento'
+    | '/cadastros/rotas'
+  id:
+    | '__root__'
+    | '/'
+    | '/cadastros/categorias'
+    | '/cadastros/centros-custo'
+    | '/cadastros/clientes'
+    | '/cadastros/consultores'
+    | '/cadastros/contas-bancarias'
+    | '/cadastros/formas-recebimento'
+    | '/cadastros/rotas'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CadastrosCategoriasRoute: typeof CadastrosCategoriasRoute
+  CadastrosCentrosCustoRoute: typeof CadastrosCentrosCustoRoute
+  CadastrosClientesRoute: typeof CadastrosClientesRoute
+  CadastrosConsultoresRoute: typeof CadastrosConsultoresRoute
+  CadastrosContasBancariasRoute: typeof CadastrosContasBancariasRoute
+  CadastrosFormasRecebimentoRoute: typeof CadastrosFormasRecebimentoRoute
+  CadastrosRotasRoute: typeof CadastrosRotasRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,12 +145,78 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cadastros/rotas': {
+      id: '/cadastros/rotas'
+      path: '/cadastros/rotas'
+      fullPath: '/cadastros/rotas'
+      preLoaderRoute: typeof CadastrosRotasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/formas-recebimento': {
+      id: '/cadastros/formas-recebimento'
+      path: '/cadastros/formas-recebimento'
+      fullPath: '/cadastros/formas-recebimento'
+      preLoaderRoute: typeof CadastrosFormasRecebimentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/contas-bancarias': {
+      id: '/cadastros/contas-bancarias'
+      path: '/cadastros/contas-bancarias'
+      fullPath: '/cadastros/contas-bancarias'
+      preLoaderRoute: typeof CadastrosContasBancariasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/consultores': {
+      id: '/cadastros/consultores'
+      path: '/cadastros/consultores'
+      fullPath: '/cadastros/consultores'
+      preLoaderRoute: typeof CadastrosConsultoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/clientes': {
+      id: '/cadastros/clientes'
+      path: '/cadastros/clientes'
+      fullPath: '/cadastros/clientes'
+      preLoaderRoute: typeof CadastrosClientesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/centros-custo': {
+      id: '/cadastros/centros-custo'
+      path: '/cadastros/centros-custo'
+      fullPath: '/cadastros/centros-custo'
+      preLoaderRoute: typeof CadastrosCentrosCustoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/categorias': {
+      id: '/cadastros/categorias'
+      path: '/cadastros/categorias'
+      fullPath: '/cadastros/categorias'
+      preLoaderRoute: typeof CadastrosCategoriasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CadastrosCategoriasRoute: CadastrosCategoriasRoute,
+  CadastrosCentrosCustoRoute: CadastrosCentrosCustoRoute,
+  CadastrosClientesRoute: CadastrosClientesRoute,
+  CadastrosConsultoresRoute: CadastrosConsultoresRoute,
+  CadastrosContasBancariasRoute: CadastrosContasBancariasRoute,
+  CadastrosFormasRecebimentoRoute: CadastrosFormasRecebimentoRoute,
+  CadastrosRotasRoute: CadastrosRotasRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
