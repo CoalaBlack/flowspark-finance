@@ -77,7 +77,7 @@ function Page() {
         </div>
         <Button variant="outline" size="sm" className="gap-2"><Printer className="h-4 w-4" />Imprimir</Button>
         <Button variant="outline" size="sm" className="gap-2"><Download className="h-4 w-4" />Exportar</Button>
-        <Button size="sm" className="gap-2 bg-gradient-to-r from-orange-600 to-amber-500 text-white shadow-glow hover:opacity-90">
+        <Button size="sm" className="gap-2 bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-90">
           <Plus className="h-4 w-4" />Novo Cliente
         </Button>
       </div>
