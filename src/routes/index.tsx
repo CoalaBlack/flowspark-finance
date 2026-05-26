@@ -130,9 +130,10 @@ function Dashboard() {
                 contentStyle={{
                   background: "oklch(0.21 0.05 270)",
                   border: "1px solid oklch(0.30 0.05 270)",
-                  borderRadius: 12,
+                  borderRadius: 12, color: "oklch(0.97 0.01 270)"
                 }}
                 labelStyle={{ color: "oklch(0.97 0.01 270)" }}
+                itemStyle={{ color: "oklch(0.97 0.01 270)" }}
                 formatter={(v: number) => `R$ ${v.toLocaleString("pt-BR")}`}
               />
               <Legend wrapperStyle={{ fontSize: 12 }} />
@@ -164,6 +165,8 @@ function Dashboard() {
                   border: "1px solid oklch(0.30 0.05 270)",
                   borderRadius: 12,
                 }}
+                labelStyle={{ color: "oklch(0.97 0.01 270)" }}
+                itemStyle={{ color: "oklch(0.97 0.01 270)" }}
                 formatter={(v: number) => `R$ ${v.toLocaleString("pt-BR")}`}
               />
               <Legend wrapperStyle={{ fontSize: 11 }} />
@@ -185,6 +188,8 @@ function Dashboard() {
                   border: "1px solid oklch(0.30 0.05 270)",
                   borderRadius: 12,
                 }}
+                labelStyle={{ color: "oklch(0.97 0.01 270)" }}
+                itemStyle={{ color: "oklch(0.97 0.01 270)" }}
                 formatter={(v: number) => `R$ ${v.toLocaleString("pt-BR")}`}
               />
               <Bar dataKey="value" radius={[8, 8, 0, 0]}>
