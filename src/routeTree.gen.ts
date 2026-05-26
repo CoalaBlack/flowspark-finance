@@ -25,6 +25,7 @@ import { Route as CobrancaEmprestimosRouteImport } from './routes/cobranca.empre
 import { Route as CobrancaCobrancasDiaRouteImport } from './routes/cobranca.cobrancas-dia'
 import { Route as CadastrosRotasRouteImport } from './routes/cadastros.rotas'
 import { Route as CadastrosFormasRecebimentoRouteImport } from './routes/cadastros.formas-recebimento'
+import { Route as CadastrosCredorPromissoriaRouteImport } from './routes/cadastros.credor-promissoria'
 import { Route as CadastrosContasBancariasRouteImport } from './routes/cadastros.contas-bancarias'
 import { Route as CadastrosConsultoresRouteImport } from './routes/cadastros.consultores'
 import { Route as CadastrosClientesRouteImport } from './routes/cadastros.clientes'
@@ -117,6 +118,12 @@ const CadastrosFormasRecebimentoRoute =
     path: '/cadastros/formas-recebimento',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CadastrosCredorPromissoriaRoute =
+  CadastrosCredorPromissoriaRouteImport.update({
+    id: '/cadastros/credor-promissoria',
+    path: '/cadastros/credor-promissoria',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CadastrosContasBancariasRoute =
   CadastrosContasBancariasRouteImport.update({
     id: '/cadastros/contas-bancarias',
@@ -169,6 +176,7 @@ export interface FileRoutesByFullPath {
   '/cadastros/clientes': typeof CadastrosClientesRoute
   '/cadastros/consultores': typeof CadastrosConsultoresRoute
   '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
+  '/cadastros/credor-promissoria': typeof CadastrosCredorPromissoriaRoute
   '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
   '/cadastros/rotas': typeof CadastrosRotasRoute
   '/cobranca/cobrancas-dia': typeof CobrancaCobrancasDiaRoute
@@ -195,6 +203,7 @@ export interface FileRoutesByTo {
   '/cadastros/clientes': typeof CadastrosClientesRoute
   '/cadastros/consultores': typeof CadastrosConsultoresRoute
   '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
+  '/cadastros/credor-promissoria': typeof CadastrosCredorPromissoriaRoute
   '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
   '/cadastros/rotas': typeof CadastrosRotasRoute
   '/cobranca/cobrancas-dia': typeof CobrancaCobrancasDiaRoute
@@ -222,6 +231,7 @@ export interface FileRoutesById {
   '/cadastros/clientes': typeof CadastrosClientesRoute
   '/cadastros/consultores': typeof CadastrosConsultoresRoute
   '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
+  '/cadastros/credor-promissoria': typeof CadastrosCredorPromissoriaRoute
   '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
   '/cadastros/rotas': typeof CadastrosRotasRoute
   '/cobranca/cobrancas-dia': typeof CobrancaCobrancasDiaRoute
@@ -250,6 +260,7 @@ export interface FileRouteTypes {
     | '/cadastros/clientes'
     | '/cadastros/consultores'
     | '/cadastros/contas-bancarias'
+    | '/cadastros/credor-promissoria'
     | '/cadastros/formas-recebimento'
     | '/cadastros/rotas'
     | '/cobranca/cobrancas-dia'
@@ -276,6 +287,7 @@ export interface FileRouteTypes {
     | '/cadastros/clientes'
     | '/cadastros/consultores'
     | '/cadastros/contas-bancarias'
+    | '/cadastros/credor-promissoria'
     | '/cadastros/formas-recebimento'
     | '/cadastros/rotas'
     | '/cobranca/cobrancas-dia'
@@ -302,6 +314,7 @@ export interface FileRouteTypes {
     | '/cadastros/clientes'
     | '/cadastros/consultores'
     | '/cadastros/contas-bancarias'
+    | '/cadastros/credor-promissoria'
     | '/cadastros/formas-recebimento'
     | '/cadastros/rotas'
     | '/cobranca/cobrancas-dia'
@@ -329,6 +342,7 @@ export interface RootRouteChildren {
   CadastrosClientesRoute: typeof CadastrosClientesRoute
   CadastrosConsultoresRoute: typeof CadastrosConsultoresRoute
   CadastrosContasBancariasRoute: typeof CadastrosContasBancariasRoute
+  CadastrosCredorPromissoriaRoute: typeof CadastrosCredorPromissoriaRoute
   CadastrosFormasRecebimentoRoute: typeof CadastrosFormasRecebimentoRoute
   CadastrosRotasRoute: typeof CadastrosRotasRoute
   CobrancaCobrancasDiaRoute: typeof CobrancaCobrancasDiaRoute
@@ -460,6 +474,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CadastrosFormasRecebimentoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cadastros/credor-promissoria': {
+      id: '/cadastros/credor-promissoria'
+      path: '/cadastros/credor-promissoria'
+      fullPath: '/cadastros/credor-promissoria'
+      preLoaderRoute: typeof CadastrosCredorPromissoriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cadastros/contas-bancarias': {
       id: '/cadastros/contas-bancarias'
       path: '/cadastros/contas-bancarias'
@@ -529,6 +550,7 @@ const rootRouteChildren: RootRouteChildren = {
   CadastrosClientesRoute: CadastrosClientesRoute,
   CadastrosConsultoresRoute: CadastrosConsultoresRoute,
   CadastrosContasBancariasRoute: CadastrosContasBancariasRoute,
+  CadastrosCredorPromissoriaRoute: CadastrosCredorPromissoriaRoute,
   CadastrosFormasRecebimentoRoute: CadastrosFormasRecebimentoRoute,
   CadastrosRotasRoute: CadastrosRotasRoute,
   CobrancaCobrancasDiaRoute: CobrancaCobrancasDiaRoute,
@@ -548,3 +570,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
