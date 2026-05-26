@@ -87,7 +87,7 @@ function Page() {
             <thead>
               <tr className="border-b border-border/50 bg-background/40">
                 {["Nome","Cep","Endereço","Bairro","Complemento","Cidade","Fone","Celular","Usuário app","Senha app","CPF","Saldo atual $","Foto","Ações"].map((h, i) => (
-                  <th key={i} className="px-4 py-3 text-left text-[11px] uppercase tracking-wider text-muted-foreground font-semibold whitespace-nowrap">
+                  <th key={i} className="px-3 py-1.5 text-left text-[11px] uppercase tracking-wider text-muted-foreground font-semibold whitespace-nowrap">
                     {h}
                   </th>
                 ))}
@@ -96,44 +96,44 @@ function Page() {
             <tbody>
               {filtered.map((r, i) => (
                 <tr key={r.id} className="border-b border-border/30 hover:bg-primary/5 transition-colors" style={{ animationDelay: `${i * 30}ms` }}>
-                  <td className="px-4 py-3">
+                  <td className="px-3 py-1.5">
                     <div className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-full bg-gradient-primary flex items-center justify-center text-xs font-bold text-primary-foreground shrink-0 shadow">
+                      <div className="h-7 w-7 rounded-full bg-gradient-primary flex items-center justify-center text-xs font-bold text-primary-foreground shrink-0 shadow">
                         {r.nome[0]}
                       </div>
                       <span className="font-medium whitespace-nowrap">{r.nome}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-sm font-mono whitespace-nowrap">{r.cep}</td>
-                  <td className="px-4 py-3 text-sm whitespace-nowrap">{r.endereco}</td>
-                  <td className="px-4 py-3 text-sm whitespace-nowrap">{r.bairro}</td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground italic">{r.complemento || "—"}</td>
-                  <td className="px-4 py-3 text-sm whitespace-nowrap">{r.cidade}</td>
-                  <td className="px-4 py-3 text-sm font-mono text-muted-foreground whitespace-nowrap">{r.fone || "—"}</td>
-                  <td className="px-4 py-3 text-sm font-mono whitespace-nowrap">{r.celular}</td>
-                  <td className="px-4 py-3 text-sm font-mono">{r.usuarioApp}</td>
-                  <td className="px-4 py-3 text-sm font-mono text-muted-foreground">{"•".repeat(r.senhaApp.length)}</td>
-                  <td className="px-4 py-3 text-sm font-mono whitespace-nowrap">{r.cpf || "—"}</td>
-                  <td className="px-4 py-3 text-sm font-semibold text-right tabular-nums whitespace-nowrap">
+                  <td className="px-3 py-1.5 text-sm font-mono whitespace-nowrap">{r.cep}</td>
+                  <td className="px-3 py-1.5 text-sm whitespace-nowrap">{r.endereco}</td>
+                  <td className="px-3 py-1.5 text-sm whitespace-nowrap">{r.bairro}</td>
+                  <td className="px-3 py-1.5 text-sm text-muted-foreground italic">{r.complemento || "—"}</td>
+                  <td className="px-3 py-1.5 text-sm whitespace-nowrap">{r.cidade}</td>
+                  <td className="px-3 py-1.5 text-sm font-mono text-muted-foreground whitespace-nowrap">{r.fone || "—"}</td>
+                  <td className="px-3 py-1.5 text-sm font-mono whitespace-nowrap">{r.celular}</td>
+                  <td className="px-3 py-1.5 text-sm font-mono">{r.usuarioApp}</td>
+                  <td className="px-3 py-1.5 text-sm font-mono text-muted-foreground">{"•".repeat(r.senhaApp.length)}</td>
+                  <td className="px-3 py-1.5 text-sm font-mono whitespace-nowrap">{r.cpf || "—"}</td>
+                  <td className="px-3 py-1.5 text-sm font-semibold text-right tabular-nums whitespace-nowrap">
                     {r.saldo.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                   </td>
-                  <td className="px-4 py-3">
-                    <div className="h-9 w-9 rounded-lg border border-dashed border-border/70 bg-background/40 flex items-center justify-center text-muted-foreground">
+                  <td className="px-3 py-1.5">
+                    <div className="h-7 w-7 rounded-md border border-dashed border-border/70 bg-background/40 flex items-center justify-center text-muted-foreground">
                       <ImageOff className="h-4 w-4" />
                     </div>
                   </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-1.5 flex-wrap">
-                      <button className="inline-flex items-center gap-1 rounded-md bg-gradient-primary text-primary-foreground text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm hover:opacity-90 transition">
+                  <td className="px-3 py-1.5">
+                    <div className="flex items-center gap-1 flex-nowrap whitespace-nowrap">
+                      <button className="inline-flex items-center gap-1 rounded-md bg-gradient-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm hover:opacity-90 transition">
                         <ArrowDownUp className="h-3 w-3" />Adição / Retirada
                       </button>
-                      <button className="inline-flex items-center gap-1 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
+                      <button className="inline-flex items-center gap-1 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Eye className="h-3 w-3" />Exibir
                       </button>
-                      <button className="inline-flex items-center gap-1 rounded-md bg-muted hover:bg-muted/70 text-foreground text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
+                      <button className="inline-flex items-center gap-1 rounded-md bg-muted hover:bg-muted/70 text-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Pencil className="h-3 w-3" />Editar
                       </button>
-                      <button className="inline-flex items-center gap-1 rounded-md bg-destructive hover:opacity-90 text-destructive-foreground text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
+                      <button className="inline-flex items-center gap-1 rounded-md bg-destructive hover:opacity-90 text-destructive-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Trash2 className="h-3 w-3" />Excluir
                       </button>
                     </div>
@@ -143,7 +143,7 @@ function Page() {
             </tbody>
           </table>
         </div>
-        <div className="px-4 py-3 text-xs text-muted-foreground border-t border-border/50 flex items-center justify-between">
+        <div className="px-4 py-2.5 text-xs text-muted-foreground border-t border-border/50 flex items-center justify-between">
           <span>{filtered.length} consultor{filtered.length !== 1 && "es"}</span>
           <span>Atualizado agora</span>
         </div>
