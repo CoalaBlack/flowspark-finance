@@ -89,7 +89,7 @@ function Page() {
             <thead>
               <tr className="border-b border-border/50 bg-background/40">
                 {["Cliente","Status","Avaliação","Estabelecimento","Endereço","Bairro","Cidade","Celular","Celular 2","Email","Limite R$","Status","Criado em","Ações"].map((h, i) => (
-                  <th key={i} className="px-4 py-3 text-left text-[11px] uppercase tracking-wider text-muted-foreground font-semibold whitespace-nowrap">
+                  <th key={i} className="px-3 py-1.5 text-left text-[11px] uppercase tracking-wider text-muted-foreground font-semibold whitespace-nowrap">
                     {h}
                   </th>
                 ))}
@@ -98,41 +98,41 @@ function Page() {
             <tbody>
               {filtered.map((r, i) => (
                 <tr key={r.id} className="border-b border-border/30 hover:bg-primary/5 transition-colors" style={{ animationDelay: `${i * 30}ms` }}>
-                  <td className="px-4 py-3">
+                  <td className="px-3 py-1.5">
                     <div className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-full bg-gradient-primary flex items-center justify-center text-xs font-bold text-primary-foreground shrink-0 shadow">
+                      <div className="h-7 w-7 rounded-full bg-gradient-primary flex items-center justify-center text-xs font-bold text-primary-foreground shrink-0 shadow">
                         {r.nome.split(" ").map((n) => n[0]).slice(0, 2).join("")}
                       </div>
                       <span className="font-medium whitespace-nowrap">{r.nome}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-3 py-1.5">
                     <Badge variant="outline" className="border-success/40 text-success bg-success/5">{r.status}</Badge>
                   </td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground italic">{r.avaliacao}</td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground italic">{r.estabelecimento}</td>
-                  <td className="px-4 py-3 text-sm whitespace-nowrap">{r.endereco}</td>
-                  <td className="px-4 py-3 text-sm whitespace-nowrap">{r.bairro}</td>
-                  <td className="px-4 py-3 text-sm">{r.cidade}</td>
-                  <td className="px-4 py-3 text-sm font-mono whitespace-nowrap">{r.celular}</td>
-                  <td className="px-4 py-3 text-sm font-mono text-muted-foreground">{r.celular2 || "—"}</td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">{r.email || "—"}</td>
-                  <td className="px-4 py-3 text-sm font-semibold text-right tabular-nums">
+                  <td className="px-3 py-1.5 text-sm text-muted-foreground italic">{r.avaliacao}</td>
+                  <td className="px-3 py-1.5 text-sm text-muted-foreground italic">{r.estabelecimento}</td>
+                  <td className="px-3 py-1.5 text-sm whitespace-nowrap">{r.endereco}</td>
+                  <td className="px-3 py-1.5 text-sm whitespace-nowrap">{r.bairro}</td>
+                  <td className="px-3 py-1.5 text-sm">{r.cidade}</td>
+                  <td className="px-3 py-1.5 text-sm font-mono whitespace-nowrap">{r.celular}</td>
+                  <td className="px-3 py-1.5 text-sm font-mono text-muted-foreground">{r.celular2 || "—"}</td>
+                  <td className="px-3 py-1.5 text-sm text-muted-foreground">{r.email || "—"}</td>
+                  <td className="px-3 py-1.5 text-sm font-semibold text-right tabular-nums">
                     {r.limite.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-3 py-1.5">
                     <Badge variant="outline" className="border-success/40 text-success bg-success/5">{r.status}</Badge>
                   </td>
-                  <td className="px-4 py-3 text-sm font-mono text-muted-foreground whitespace-nowrap">{r.criadoEm}</td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-1.5">
-                      <button className="inline-flex items-center gap-1 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
+                  <td className="px-3 py-1.5 text-sm font-mono text-muted-foreground whitespace-nowrap">{r.criadoEm}</td>
+                  <td className="px-3 py-1.5">
+                    <div className="flex items-center gap-1 flex-nowrap whitespace-nowrap">
+                      <button className="inline-flex items-center gap-1 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Eye className="h-3 w-3" />Exibir
                       </button>
-                      <button className="inline-flex items-center gap-1 rounded-md bg-muted hover:bg-muted/70 text-foreground text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
+                      <button className="inline-flex items-center gap-1 rounded-md bg-muted hover:bg-muted/70 text-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Pencil className="h-3 w-3" />Editar
                       </button>
-                      <button className="inline-flex items-center gap-1 rounded-md bg-destructive hover:opacity-90 text-destructive-foreground text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
+                      <button className="inline-flex items-center gap-1 rounded-md bg-destructive hover:opacity-90 text-destructive-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Trash2 className="h-3 w-3" />Excluir
                       </button>
                     </div>
@@ -142,7 +142,7 @@ function Page() {
             </tbody>
           </table>
         </div>
-        <div className="px-4 py-3 text-xs text-muted-foreground border-t border-border/50 flex items-center justify-between">
+        <div className="px-4 py-2.5 text-xs text-muted-foreground border-t border-border/50 flex items-center justify-between">
           <span>{filtered.length} cliente{filtered.length !== 1 && "s"}</span>
           <span>Atualizado agora</span>
         </div>
