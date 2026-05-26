@@ -126,13 +126,13 @@ function Page() {
                   <td className="px-4 py-3 text-sm font-mono text-muted-foreground whitespace-nowrap">{r.criadoEm}</td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-1.5">
-                      <button className="inline-flex items-center gap-1 rounded-md bg-slate-500/90 hover:bg-slate-600 text-white text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
+                      <button className="inline-flex items-center gap-1 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
                         <Eye className="h-3 w-3" />Exibir
                       </button>
-                      <button className="inline-flex items-center gap-1 rounded-md bg-slate-400/90 hover:bg-slate-500 text-white text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
+                      <button className="inline-flex items-center gap-1 rounded-md bg-muted hover:bg-muted/70 text-foreground text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
                         <Pencil className="h-3 w-3" />Editar
                       </button>
-                      <button className="inline-flex items-center gap-1 rounded-md bg-gradient-to-r from-red-500 to-rose-500 hover:opacity-90 text-white text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
+                      <button className="inline-flex items-center gap-1 rounded-md bg-destructive hover:opacity-90 text-destructive-foreground text-[11px] font-bold uppercase tracking-wide px-2.5 py-1.5 shadow-sm transition">
                         <Trash2 className="h-3 w-3" />Excluir
                       </button>
                     </div>
