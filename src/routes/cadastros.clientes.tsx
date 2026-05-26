@@ -37,17 +37,17 @@ function Page() {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* Orange hero banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-400 px-6 py-7 shadow-glow">
-        <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
-        <div className="absolute -bottom-20 right-20 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
+      {/* Hero banner */}
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-primary px-6 py-7 shadow-glow">
+        <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-primary-foreground/10 blur-3xl" />
+        <div className="absolute -bottom-20 right-20 h-40 w-40 rounded-full bg-primary-foreground/10 blur-2xl" />
         <div className="relative flex items-center gap-5">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur ring-2 ring-white/40 shadow-lg">
-            <UserCircle2 className="h-10 w-10 text-white" />
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur ring-2 ring-primary-foreground/30 shadow-lg">
+            <UserCircle2 className="h-10 w-10 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow">Cadastro de Clientes</h1>
-            <p className="text-sm text-white/85 mt-1">Gestão completa da sua carteira de clientes</p>
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-primary-foreground drop-shadow">Cadastro de Clientes</h1>
+            <p className="text-sm text-primary-foreground/80 mt-1">Gestão completa da sua carteira de clientes</p>
           </div>
           <div className="ml-auto hidden md:flex items-center gap-3">
             <div className="rounded-2xl bg-white/15 px-4 py-2 backdrop-blur ring-1 ring-white/20">
