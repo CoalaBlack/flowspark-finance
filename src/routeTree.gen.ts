@@ -10,6 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MovimentacoesTrocaChequesRouteImport } from './routes/movimentacoes.troca-cheques'
+import { Route as MovimentacoesTransferenciasRouteImport } from './routes/movimentacoes.transferencias'
+import { Route as MovimentacoesReceitasRouteImport } from './routes/movimentacoes.receitas'
+import { Route as MovimentacoesDespesasRouteImport } from './routes/movimentacoes.despesas'
+import { Route as FinanceiroFluxoCaixaRouteImport } from './routes/financeiro.fluxo-caixa'
+import { Route as FinanceiroContasReceberRouteImport } from './routes/financeiro.contas-receber'
+import { Route as FinanceiroContasPagarRouteImport } from './routes/financeiro.contas-pagar'
+import { Route as FinanceiroConciliacaoRouteImport } from './routes/financeiro.conciliacao'
 import { Route as CadastrosRotasRouteImport } from './routes/cadastros.rotas'
 import { Route as CadastrosFormasRecebimentoRouteImport } from './routes/cadastros.formas-recebimento'
 import { Route as CadastrosContasBancariasRouteImport } from './routes/cadastros.contas-bancarias'
@@ -21,6 +29,48 @@ import { Route as CadastrosCategoriasRouteImport } from './routes/cadastros.cate
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MovimentacoesTrocaChequesRoute =
+  MovimentacoesTrocaChequesRouteImport.update({
+    id: '/movimentacoes/troca-cheques',
+    path: '/movimentacoes/troca-cheques',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MovimentacoesTransferenciasRoute =
+  MovimentacoesTransferenciasRouteImport.update({
+    id: '/movimentacoes/transferencias',
+    path: '/movimentacoes/transferencias',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MovimentacoesReceitasRoute = MovimentacoesReceitasRouteImport.update({
+  id: '/movimentacoes/receitas',
+  path: '/movimentacoes/receitas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MovimentacoesDespesasRoute = MovimentacoesDespesasRouteImport.update({
+  id: '/movimentacoes/despesas',
+  path: '/movimentacoes/despesas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceiroFluxoCaixaRoute = FinanceiroFluxoCaixaRouteImport.update({
+  id: '/financeiro/fluxo-caixa',
+  path: '/financeiro/fluxo-caixa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceiroContasReceberRoute = FinanceiroContasReceberRouteImport.update({
+  id: '/financeiro/contas-receber',
+  path: '/financeiro/contas-receber',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceiroContasPagarRoute = FinanceiroContasPagarRouteImport.update({
+  id: '/financeiro/contas-pagar',
+  path: '/financeiro/contas-pagar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceiroConciliacaoRoute = FinanceiroConciliacaoRouteImport.update({
+  id: '/financeiro/conciliacao',
+  path: '/financeiro/conciliacao',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CadastrosRotasRoute = CadastrosRotasRouteImport.update({
@@ -70,6 +120,14 @@ export interface FileRoutesByFullPath {
   '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
   '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
   '/cadastros/rotas': typeof CadastrosRotasRoute
+  '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
+  '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
+  '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
+  '/financeiro/fluxo-caixa': typeof FinanceiroFluxoCaixaRoute
+  '/movimentacoes/despesas': typeof MovimentacoesDespesasRoute
+  '/movimentacoes/receitas': typeof MovimentacoesReceitasRoute
+  '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
+  '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -80,6 +138,14 @@ export interface FileRoutesByTo {
   '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
   '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
   '/cadastros/rotas': typeof CadastrosRotasRoute
+  '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
+  '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
+  '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
+  '/financeiro/fluxo-caixa': typeof FinanceiroFluxoCaixaRoute
+  '/movimentacoes/despesas': typeof MovimentacoesDespesasRoute
+  '/movimentacoes/receitas': typeof MovimentacoesReceitasRoute
+  '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
+  '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -91,6 +157,14 @@ export interface FileRoutesById {
   '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
   '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
   '/cadastros/rotas': typeof CadastrosRotasRoute
+  '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
+  '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
+  '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
+  '/financeiro/fluxo-caixa': typeof FinanceiroFluxoCaixaRoute
+  '/movimentacoes/despesas': typeof MovimentacoesDespesasRoute
+  '/movimentacoes/receitas': typeof MovimentacoesReceitasRoute
+  '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
+  '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -103,6 +177,14 @@ export interface FileRouteTypes {
     | '/cadastros/contas-bancarias'
     | '/cadastros/formas-recebimento'
     | '/cadastros/rotas'
+    | '/financeiro/conciliacao'
+    | '/financeiro/contas-pagar'
+    | '/financeiro/contas-receber'
+    | '/financeiro/fluxo-caixa'
+    | '/movimentacoes/despesas'
+    | '/movimentacoes/receitas'
+    | '/movimentacoes/transferencias'
+    | '/movimentacoes/troca-cheques'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -113,6 +195,14 @@ export interface FileRouteTypes {
     | '/cadastros/contas-bancarias'
     | '/cadastros/formas-recebimento'
     | '/cadastros/rotas'
+    | '/financeiro/conciliacao'
+    | '/financeiro/contas-pagar'
+    | '/financeiro/contas-receber'
+    | '/financeiro/fluxo-caixa'
+    | '/movimentacoes/despesas'
+    | '/movimentacoes/receitas'
+    | '/movimentacoes/transferencias'
+    | '/movimentacoes/troca-cheques'
   id:
     | '__root__'
     | '/'
@@ -123,6 +213,14 @@ export interface FileRouteTypes {
     | '/cadastros/contas-bancarias'
     | '/cadastros/formas-recebimento'
     | '/cadastros/rotas'
+    | '/financeiro/conciliacao'
+    | '/financeiro/contas-pagar'
+    | '/financeiro/contas-receber'
+    | '/financeiro/fluxo-caixa'
+    | '/movimentacoes/despesas'
+    | '/movimentacoes/receitas'
+    | '/movimentacoes/transferencias'
+    | '/movimentacoes/troca-cheques'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -134,6 +232,14 @@ export interface RootRouteChildren {
   CadastrosContasBancariasRoute: typeof CadastrosContasBancariasRoute
   CadastrosFormasRecebimentoRoute: typeof CadastrosFormasRecebimentoRoute
   CadastrosRotasRoute: typeof CadastrosRotasRoute
+  FinanceiroConciliacaoRoute: typeof FinanceiroConciliacaoRoute
+  FinanceiroContasPagarRoute: typeof FinanceiroContasPagarRoute
+  FinanceiroContasReceberRoute: typeof FinanceiroContasReceberRoute
+  FinanceiroFluxoCaixaRoute: typeof FinanceiroFluxoCaixaRoute
+  MovimentacoesDespesasRoute: typeof MovimentacoesDespesasRoute
+  MovimentacoesReceitasRoute: typeof MovimentacoesReceitasRoute
+  MovimentacoesTransferenciasRoute: typeof MovimentacoesTransferenciasRoute
+  MovimentacoesTrocaChequesRoute: typeof MovimentacoesTrocaChequesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -143,6 +249,62 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentacoes/troca-cheques': {
+      id: '/movimentacoes/troca-cheques'
+      path: '/movimentacoes/troca-cheques'
+      fullPath: '/movimentacoes/troca-cheques'
+      preLoaderRoute: typeof MovimentacoesTrocaChequesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentacoes/transferencias': {
+      id: '/movimentacoes/transferencias'
+      path: '/movimentacoes/transferencias'
+      fullPath: '/movimentacoes/transferencias'
+      preLoaderRoute: typeof MovimentacoesTransferenciasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentacoes/receitas': {
+      id: '/movimentacoes/receitas'
+      path: '/movimentacoes/receitas'
+      fullPath: '/movimentacoes/receitas'
+      preLoaderRoute: typeof MovimentacoesReceitasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentacoes/despesas': {
+      id: '/movimentacoes/despesas'
+      path: '/movimentacoes/despesas'
+      fullPath: '/movimentacoes/despesas'
+      preLoaderRoute: typeof MovimentacoesDespesasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financeiro/fluxo-caixa': {
+      id: '/financeiro/fluxo-caixa'
+      path: '/financeiro/fluxo-caixa'
+      fullPath: '/financeiro/fluxo-caixa'
+      preLoaderRoute: typeof FinanceiroFluxoCaixaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financeiro/contas-receber': {
+      id: '/financeiro/contas-receber'
+      path: '/financeiro/contas-receber'
+      fullPath: '/financeiro/contas-receber'
+      preLoaderRoute: typeof FinanceiroContasReceberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financeiro/contas-pagar': {
+      id: '/financeiro/contas-pagar'
+      path: '/financeiro/contas-pagar'
+      fullPath: '/financeiro/contas-pagar'
+      preLoaderRoute: typeof FinanceiroContasPagarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financeiro/conciliacao': {
+      id: '/financeiro/conciliacao'
+      path: '/financeiro/conciliacao'
+      fullPath: '/financeiro/conciliacao'
+      preLoaderRoute: typeof FinanceiroConciliacaoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cadastros/rotas': {
@@ -206,6 +368,14 @@ const rootRouteChildren: RootRouteChildren = {
   CadastrosContasBancariasRoute: CadastrosContasBancariasRoute,
   CadastrosFormasRecebimentoRoute: CadastrosFormasRecebimentoRoute,
   CadastrosRotasRoute: CadastrosRotasRoute,
+  FinanceiroConciliacaoRoute: FinanceiroConciliacaoRoute,
+  FinanceiroContasPagarRoute: FinanceiroContasPagarRoute,
+  FinanceiroContasReceberRoute: FinanceiroContasReceberRoute,
+  FinanceiroFluxoCaixaRoute: FinanceiroFluxoCaixaRoute,
+  MovimentacoesDespesasRoute: MovimentacoesDespesasRoute,
+  MovimentacoesReceitasRoute: MovimentacoesReceitasRoute,
+  MovimentacoesTransferenciasRoute: MovimentacoesTransferenciasRoute,
+  MovimentacoesTrocaChequesRoute: MovimentacoesTrocaChequesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
