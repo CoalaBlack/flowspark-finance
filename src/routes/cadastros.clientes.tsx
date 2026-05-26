@@ -97,10 +97,10 @@ function Page() {
             </thead>
             <tbody>
               {filtered.map((r, i) => (
-                <tr key={r.id} className="border-b border-border/30 hover:bg-orange-500/5 transition-colors" style={{ animationDelay: `${i * 30}ms` }}>
+                <tr key={r.id} className="border-b border-border/30 hover:bg-primary/5 transition-colors" style={{ animationDelay: `${i * 30}ms` }}>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-full bg-gradient-to-br from-orange-500 to-amber-400 flex items-center justify-center text-xs font-bold text-white shrink-0 shadow">
+                      <div className="h-9 w-9 rounded-full bg-gradient-primary flex items-center justify-center text-xs font-bold text-primary-foreground shrink-0 shadow">
                         {r.nome.split(" ").map((n) => n[0]).slice(0, 2).join("")}
                       </div>
                       <span className="font-medium whitespace-nowrap">{r.nome}</span>
