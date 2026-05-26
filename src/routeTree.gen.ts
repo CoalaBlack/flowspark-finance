@@ -10,33 +10,340 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MovimentacoesTrocaChequesRouteImport } from './routes/movimentacoes.troca-cheques'
+import { Route as MovimentacoesTransferenciasRouteImport } from './routes/movimentacoes.transferencias'
+import { Route as MovimentacoesReceitasRouteImport } from './routes/movimentacoes.receitas'
+import { Route as MovimentacoesDespesasRouteImport } from './routes/movimentacoes.despesas'
+import { Route as FinanceiroFluxoCaixaRouteImport } from './routes/financeiro.fluxo-caixa'
+import { Route as FinanceiroContasReceberRouteImport } from './routes/financeiro.contas-receber'
+import { Route as FinanceiroContasPagarRouteImport } from './routes/financeiro.contas-pagar'
+import { Route as FinanceiroConciliacaoRouteImport } from './routes/financeiro.conciliacao'
+import { Route as CobrancaTransferirRouteImport } from './routes/cobranca.transferir'
+import { Route as CobrancaRenegociacoesRouteImport } from './routes/cobranca.renegociacoes'
+import { Route as CobrancaNovoEmprestimoRouteImport } from './routes/cobranca.novo-emprestimo'
+import { Route as CobrancaEmprestimosRouteImport } from './routes/cobranca.emprestimos'
+import { Route as CobrancaCobrancasDiaRouteImport } from './routes/cobranca.cobrancas-dia'
+import { Route as CadastrosRotasRouteImport } from './routes/cadastros.rotas'
+import { Route as CadastrosFormasRecebimentoRouteImport } from './routes/cadastros.formas-recebimento'
+import { Route as CadastrosContasBancariasRouteImport } from './routes/cadastros.contas-bancarias'
+import { Route as CadastrosConsultoresRouteImport } from './routes/cadastros.consultores'
+import { Route as CadastrosClientesRouteImport } from './routes/cadastros.clientes'
+import { Route as CadastrosCentrosCustoRouteImport } from './routes/cadastros.centros-custo'
+import { Route as CadastrosCategoriasRouteImport } from './routes/cadastros.categorias'
+import { Route as AnaliseRotasRouteImport } from './routes/analise.rotas'
+import { Route as AnaliseEmprestimosRouteImport } from './routes/analise.emprestimos'
+import { Route as AnaliseConsultoresRouteImport } from './routes/analise.consultores'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MovimentacoesTrocaChequesRoute =
+  MovimentacoesTrocaChequesRouteImport.update({
+    id: '/movimentacoes/troca-cheques',
+    path: '/movimentacoes/troca-cheques',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MovimentacoesTransferenciasRoute =
+  MovimentacoesTransferenciasRouteImport.update({
+    id: '/movimentacoes/transferencias',
+    path: '/movimentacoes/transferencias',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MovimentacoesReceitasRoute = MovimentacoesReceitasRouteImport.update({
+  id: '/movimentacoes/receitas',
+  path: '/movimentacoes/receitas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MovimentacoesDespesasRoute = MovimentacoesDespesasRouteImport.update({
+  id: '/movimentacoes/despesas',
+  path: '/movimentacoes/despesas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceiroFluxoCaixaRoute = FinanceiroFluxoCaixaRouteImport.update({
+  id: '/financeiro/fluxo-caixa',
+  path: '/financeiro/fluxo-caixa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceiroContasReceberRoute = FinanceiroContasReceberRouteImport.update({
+  id: '/financeiro/contas-receber',
+  path: '/financeiro/contas-receber',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceiroContasPagarRoute = FinanceiroContasPagarRouteImport.update({
+  id: '/financeiro/contas-pagar',
+  path: '/financeiro/contas-pagar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceiroConciliacaoRoute = FinanceiroConciliacaoRouteImport.update({
+  id: '/financeiro/conciliacao',
+  path: '/financeiro/conciliacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CobrancaTransferirRoute = CobrancaTransferirRouteImport.update({
+  id: '/cobranca/transferir',
+  path: '/cobranca/transferir',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CobrancaRenegociacoesRoute = CobrancaRenegociacoesRouteImport.update({
+  id: '/cobranca/renegociacoes',
+  path: '/cobranca/renegociacoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CobrancaNovoEmprestimoRoute = CobrancaNovoEmprestimoRouteImport.update({
+  id: '/cobranca/novo-emprestimo',
+  path: '/cobranca/novo-emprestimo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CobrancaEmprestimosRoute = CobrancaEmprestimosRouteImport.update({
+  id: '/cobranca/emprestimos',
+  path: '/cobranca/emprestimos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CobrancaCobrancasDiaRoute = CobrancaCobrancasDiaRouteImport.update({
+  id: '/cobranca/cobrancas-dia',
+  path: '/cobranca/cobrancas-dia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrosRotasRoute = CadastrosRotasRouteImport.update({
+  id: '/cadastros/rotas',
+  path: '/cadastros/rotas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrosFormasRecebimentoRoute =
+  CadastrosFormasRecebimentoRouteImport.update({
+    id: '/cadastros/formas-recebimento',
+    path: '/cadastros/formas-recebimento',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CadastrosContasBancariasRoute =
+  CadastrosContasBancariasRouteImport.update({
+    id: '/cadastros/contas-bancarias',
+    path: '/cadastros/contas-bancarias',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CadastrosConsultoresRoute = CadastrosConsultoresRouteImport.update({
+  id: '/cadastros/consultores',
+  path: '/cadastros/consultores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrosClientesRoute = CadastrosClientesRouteImport.update({
+  id: '/cadastros/clientes',
+  path: '/cadastros/clientes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrosCentrosCustoRoute = CadastrosCentrosCustoRouteImport.update({
+  id: '/cadastros/centros-custo',
+  path: '/cadastros/centros-custo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrosCategoriasRoute = CadastrosCategoriasRouteImport.update({
+  id: '/cadastros/categorias',
+  path: '/cadastros/categorias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnaliseRotasRoute = AnaliseRotasRouteImport.update({
+  id: '/analise/rotas',
+  path: '/analise/rotas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnaliseEmprestimosRoute = AnaliseEmprestimosRouteImport.update({
+  id: '/analise/emprestimos',
+  path: '/analise/emprestimos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnaliseConsultoresRoute = AnaliseConsultoresRouteImport.update({
+  id: '/analise/consultores',
+  path: '/analise/consultores',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analise/consultores': typeof AnaliseConsultoresRoute
+  '/analise/emprestimos': typeof AnaliseEmprestimosRoute
+  '/analise/rotas': typeof AnaliseRotasRoute
+  '/cadastros/categorias': typeof CadastrosCategoriasRoute
+  '/cadastros/centros-custo': typeof CadastrosCentrosCustoRoute
+  '/cadastros/clientes': typeof CadastrosClientesRoute
+  '/cadastros/consultores': typeof CadastrosConsultoresRoute
+  '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
+  '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
+  '/cadastros/rotas': typeof CadastrosRotasRoute
+  '/cobranca/cobrancas-dia': typeof CobrancaCobrancasDiaRoute
+  '/cobranca/emprestimos': typeof CobrancaEmprestimosRoute
+  '/cobranca/novo-emprestimo': typeof CobrancaNovoEmprestimoRoute
+  '/cobranca/renegociacoes': typeof CobrancaRenegociacoesRoute
+  '/cobranca/transferir': typeof CobrancaTransferirRoute
+  '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
+  '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
+  '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
+  '/financeiro/fluxo-caixa': typeof FinanceiroFluxoCaixaRoute
+  '/movimentacoes/despesas': typeof MovimentacoesDespesasRoute
+  '/movimentacoes/receitas': typeof MovimentacoesReceitasRoute
+  '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
+  '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analise/consultores': typeof AnaliseConsultoresRoute
+  '/analise/emprestimos': typeof AnaliseEmprestimosRoute
+  '/analise/rotas': typeof AnaliseRotasRoute
+  '/cadastros/categorias': typeof CadastrosCategoriasRoute
+  '/cadastros/centros-custo': typeof CadastrosCentrosCustoRoute
+  '/cadastros/clientes': typeof CadastrosClientesRoute
+  '/cadastros/consultores': typeof CadastrosConsultoresRoute
+  '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
+  '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
+  '/cadastros/rotas': typeof CadastrosRotasRoute
+  '/cobranca/cobrancas-dia': typeof CobrancaCobrancasDiaRoute
+  '/cobranca/emprestimos': typeof CobrancaEmprestimosRoute
+  '/cobranca/novo-emprestimo': typeof CobrancaNovoEmprestimoRoute
+  '/cobranca/renegociacoes': typeof CobrancaRenegociacoesRoute
+  '/cobranca/transferir': typeof CobrancaTransferirRoute
+  '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
+  '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
+  '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
+  '/financeiro/fluxo-caixa': typeof FinanceiroFluxoCaixaRoute
+  '/movimentacoes/despesas': typeof MovimentacoesDespesasRoute
+  '/movimentacoes/receitas': typeof MovimentacoesReceitasRoute
+  '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
+  '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analise/consultores': typeof AnaliseConsultoresRoute
+  '/analise/emprestimos': typeof AnaliseEmprestimosRoute
+  '/analise/rotas': typeof AnaliseRotasRoute
+  '/cadastros/categorias': typeof CadastrosCategoriasRoute
+  '/cadastros/centros-custo': typeof CadastrosCentrosCustoRoute
+  '/cadastros/clientes': typeof CadastrosClientesRoute
+  '/cadastros/consultores': typeof CadastrosConsultoresRoute
+  '/cadastros/contas-bancarias': typeof CadastrosContasBancariasRoute
+  '/cadastros/formas-recebimento': typeof CadastrosFormasRecebimentoRoute
+  '/cadastros/rotas': typeof CadastrosRotasRoute
+  '/cobranca/cobrancas-dia': typeof CobrancaCobrancasDiaRoute
+  '/cobranca/emprestimos': typeof CobrancaEmprestimosRoute
+  '/cobranca/novo-emprestimo': typeof CobrancaNovoEmprestimoRoute
+  '/cobranca/renegociacoes': typeof CobrancaRenegociacoesRoute
+  '/cobranca/transferir': typeof CobrancaTransferirRoute
+  '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
+  '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
+  '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
+  '/financeiro/fluxo-caixa': typeof FinanceiroFluxoCaixaRoute
+  '/movimentacoes/despesas': typeof MovimentacoesDespesasRoute
+  '/movimentacoes/receitas': typeof MovimentacoesReceitasRoute
+  '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
+  '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/analise/consultores'
+    | '/analise/emprestimos'
+    | '/analise/rotas'
+    | '/cadastros/categorias'
+    | '/cadastros/centros-custo'
+    | '/cadastros/clientes'
+    | '/cadastros/consultores'
+    | '/cadastros/contas-bancarias'
+    | '/cadastros/formas-recebimento'
+    | '/cadastros/rotas'
+    | '/cobranca/cobrancas-dia'
+    | '/cobranca/emprestimos'
+    | '/cobranca/novo-emprestimo'
+    | '/cobranca/renegociacoes'
+    | '/cobranca/transferir'
+    | '/financeiro/conciliacao'
+    | '/financeiro/contas-pagar'
+    | '/financeiro/contas-receber'
+    | '/financeiro/fluxo-caixa'
+    | '/movimentacoes/despesas'
+    | '/movimentacoes/receitas'
+    | '/movimentacoes/transferencias'
+    | '/movimentacoes/troca-cheques'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/analise/consultores'
+    | '/analise/emprestimos'
+    | '/analise/rotas'
+    | '/cadastros/categorias'
+    | '/cadastros/centros-custo'
+    | '/cadastros/clientes'
+    | '/cadastros/consultores'
+    | '/cadastros/contas-bancarias'
+    | '/cadastros/formas-recebimento'
+    | '/cadastros/rotas'
+    | '/cobranca/cobrancas-dia'
+    | '/cobranca/emprestimos'
+    | '/cobranca/novo-emprestimo'
+    | '/cobranca/renegociacoes'
+    | '/cobranca/transferir'
+    | '/financeiro/conciliacao'
+    | '/financeiro/contas-pagar'
+    | '/financeiro/contas-receber'
+    | '/financeiro/fluxo-caixa'
+    | '/movimentacoes/despesas'
+    | '/movimentacoes/receitas'
+    | '/movimentacoes/transferencias'
+    | '/movimentacoes/troca-cheques'
+  id:
+    | '__root__'
+    | '/'
+    | '/analise/consultores'
+    | '/analise/emprestimos'
+    | '/analise/rotas'
+    | '/cadastros/categorias'
+    | '/cadastros/centros-custo'
+    | '/cadastros/clientes'
+    | '/cadastros/consultores'
+    | '/cadastros/contas-bancarias'
+    | '/cadastros/formas-recebimento'
+    | '/cadastros/rotas'
+    | '/cobranca/cobrancas-dia'
+    | '/cobranca/emprestimos'
+    | '/cobranca/novo-emprestimo'
+    | '/cobranca/renegociacoes'
+    | '/cobranca/transferir'
+    | '/financeiro/conciliacao'
+    | '/financeiro/contas-pagar'
+    | '/financeiro/contas-receber'
+    | '/financeiro/fluxo-caixa'
+    | '/movimentacoes/despesas'
+    | '/movimentacoes/receitas'
+    | '/movimentacoes/transferencias'
+    | '/movimentacoes/troca-cheques'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnaliseConsultoresRoute: typeof AnaliseConsultoresRoute
+  AnaliseEmprestimosRoute: typeof AnaliseEmprestimosRoute
+  AnaliseRotasRoute: typeof AnaliseRotasRoute
+  CadastrosCategoriasRoute: typeof CadastrosCategoriasRoute
+  CadastrosCentrosCustoRoute: typeof CadastrosCentrosCustoRoute
+  CadastrosClientesRoute: typeof CadastrosClientesRoute
+  CadastrosConsultoresRoute: typeof CadastrosConsultoresRoute
+  CadastrosContasBancariasRoute: typeof CadastrosContasBancariasRoute
+  CadastrosFormasRecebimentoRoute: typeof CadastrosFormasRecebimentoRoute
+  CadastrosRotasRoute: typeof CadastrosRotasRoute
+  CobrancaCobrancasDiaRoute: typeof CobrancaCobrancasDiaRoute
+  CobrancaEmprestimosRoute: typeof CobrancaEmprestimosRoute
+  CobrancaNovoEmprestimoRoute: typeof CobrancaNovoEmprestimoRoute
+  CobrancaRenegociacoesRoute: typeof CobrancaRenegociacoesRoute
+  CobrancaTransferirRoute: typeof CobrancaTransferirRoute
+  FinanceiroConciliacaoRoute: typeof FinanceiroConciliacaoRoute
+  FinanceiroContasPagarRoute: typeof FinanceiroContasPagarRoute
+  FinanceiroContasReceberRoute: typeof FinanceiroContasReceberRoute
+  FinanceiroFluxoCaixaRoute: typeof FinanceiroFluxoCaixaRoute
+  MovimentacoesDespesasRoute: typeof MovimentacoesDespesasRoute
+  MovimentacoesReceitasRoute: typeof MovimentacoesReceitasRoute
+  MovimentacoesTransferenciasRoute: typeof MovimentacoesTransferenciasRoute
+  MovimentacoesTrocaChequesRoute: typeof MovimentacoesTrocaChequesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +355,196 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/movimentacoes/troca-cheques': {
+      id: '/movimentacoes/troca-cheques'
+      path: '/movimentacoes/troca-cheques'
+      fullPath: '/movimentacoes/troca-cheques'
+      preLoaderRoute: typeof MovimentacoesTrocaChequesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentacoes/transferencias': {
+      id: '/movimentacoes/transferencias'
+      path: '/movimentacoes/transferencias'
+      fullPath: '/movimentacoes/transferencias'
+      preLoaderRoute: typeof MovimentacoesTransferenciasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentacoes/receitas': {
+      id: '/movimentacoes/receitas'
+      path: '/movimentacoes/receitas'
+      fullPath: '/movimentacoes/receitas'
+      preLoaderRoute: typeof MovimentacoesReceitasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentacoes/despesas': {
+      id: '/movimentacoes/despesas'
+      path: '/movimentacoes/despesas'
+      fullPath: '/movimentacoes/despesas'
+      preLoaderRoute: typeof MovimentacoesDespesasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financeiro/fluxo-caixa': {
+      id: '/financeiro/fluxo-caixa'
+      path: '/financeiro/fluxo-caixa'
+      fullPath: '/financeiro/fluxo-caixa'
+      preLoaderRoute: typeof FinanceiroFluxoCaixaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financeiro/contas-receber': {
+      id: '/financeiro/contas-receber'
+      path: '/financeiro/contas-receber'
+      fullPath: '/financeiro/contas-receber'
+      preLoaderRoute: typeof FinanceiroContasReceberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financeiro/contas-pagar': {
+      id: '/financeiro/contas-pagar'
+      path: '/financeiro/contas-pagar'
+      fullPath: '/financeiro/contas-pagar'
+      preLoaderRoute: typeof FinanceiroContasPagarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financeiro/conciliacao': {
+      id: '/financeiro/conciliacao'
+      path: '/financeiro/conciliacao'
+      fullPath: '/financeiro/conciliacao'
+      preLoaderRoute: typeof FinanceiroConciliacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cobranca/transferir': {
+      id: '/cobranca/transferir'
+      path: '/cobranca/transferir'
+      fullPath: '/cobranca/transferir'
+      preLoaderRoute: typeof CobrancaTransferirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cobranca/renegociacoes': {
+      id: '/cobranca/renegociacoes'
+      path: '/cobranca/renegociacoes'
+      fullPath: '/cobranca/renegociacoes'
+      preLoaderRoute: typeof CobrancaRenegociacoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cobranca/novo-emprestimo': {
+      id: '/cobranca/novo-emprestimo'
+      path: '/cobranca/novo-emprestimo'
+      fullPath: '/cobranca/novo-emprestimo'
+      preLoaderRoute: typeof CobrancaNovoEmprestimoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cobranca/emprestimos': {
+      id: '/cobranca/emprestimos'
+      path: '/cobranca/emprestimos'
+      fullPath: '/cobranca/emprestimos'
+      preLoaderRoute: typeof CobrancaEmprestimosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cobranca/cobrancas-dia': {
+      id: '/cobranca/cobrancas-dia'
+      path: '/cobranca/cobrancas-dia'
+      fullPath: '/cobranca/cobrancas-dia'
+      preLoaderRoute: typeof CobrancaCobrancasDiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/rotas': {
+      id: '/cadastros/rotas'
+      path: '/cadastros/rotas'
+      fullPath: '/cadastros/rotas'
+      preLoaderRoute: typeof CadastrosRotasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/formas-recebimento': {
+      id: '/cadastros/formas-recebimento'
+      path: '/cadastros/formas-recebimento'
+      fullPath: '/cadastros/formas-recebimento'
+      preLoaderRoute: typeof CadastrosFormasRecebimentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/contas-bancarias': {
+      id: '/cadastros/contas-bancarias'
+      path: '/cadastros/contas-bancarias'
+      fullPath: '/cadastros/contas-bancarias'
+      preLoaderRoute: typeof CadastrosContasBancariasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/consultores': {
+      id: '/cadastros/consultores'
+      path: '/cadastros/consultores'
+      fullPath: '/cadastros/consultores'
+      preLoaderRoute: typeof CadastrosConsultoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/clientes': {
+      id: '/cadastros/clientes'
+      path: '/cadastros/clientes'
+      fullPath: '/cadastros/clientes'
+      preLoaderRoute: typeof CadastrosClientesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/centros-custo': {
+      id: '/cadastros/centros-custo'
+      path: '/cadastros/centros-custo'
+      fullPath: '/cadastros/centros-custo'
+      preLoaderRoute: typeof CadastrosCentrosCustoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastros/categorias': {
+      id: '/cadastros/categorias'
+      path: '/cadastros/categorias'
+      fullPath: '/cadastros/categorias'
+      preLoaderRoute: typeof CadastrosCategoriasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analise/rotas': {
+      id: '/analise/rotas'
+      path: '/analise/rotas'
+      fullPath: '/analise/rotas'
+      preLoaderRoute: typeof AnaliseRotasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analise/emprestimos': {
+      id: '/analise/emprestimos'
+      path: '/analise/emprestimos'
+      fullPath: '/analise/emprestimos'
+      preLoaderRoute: typeof AnaliseEmprestimosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analise/consultores': {
+      id: '/analise/consultores'
+      path: '/analise/consultores'
+      fullPath: '/analise/consultores'
+      preLoaderRoute: typeof AnaliseConsultoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnaliseConsultoresRoute: AnaliseConsultoresRoute,
+  AnaliseEmprestimosRoute: AnaliseEmprestimosRoute,
+  AnaliseRotasRoute: AnaliseRotasRoute,
+  CadastrosCategoriasRoute: CadastrosCategoriasRoute,
+  CadastrosCentrosCustoRoute: CadastrosCentrosCustoRoute,
+  CadastrosClientesRoute: CadastrosClientesRoute,
+  CadastrosConsultoresRoute: CadastrosConsultoresRoute,
+  CadastrosContasBancariasRoute: CadastrosContasBancariasRoute,
+  CadastrosFormasRecebimentoRoute: CadastrosFormasRecebimentoRoute,
+  CadastrosRotasRoute: CadastrosRotasRoute,
+  CobrancaCobrancasDiaRoute: CobrancaCobrancasDiaRoute,
+  CobrancaEmprestimosRoute: CobrancaEmprestimosRoute,
+  CobrancaNovoEmprestimoRoute: CobrancaNovoEmprestimoRoute,
+  CobrancaRenegociacoesRoute: CobrancaRenegociacoesRoute,
+  CobrancaTransferirRoute: CobrancaTransferirRoute,
+  FinanceiroConciliacaoRoute: FinanceiroConciliacaoRoute,
+  FinanceiroContasPagarRoute: FinanceiroContasPagarRoute,
+  FinanceiroContasReceberRoute: FinanceiroContasReceberRoute,
+  FinanceiroFluxoCaixaRoute: FinanceiroFluxoCaixaRoute,
+  MovimentacoesDespesasRoute: MovimentacoesDespesasRoute,
+  MovimentacoesReceitasRoute: MovimentacoesReceitasRoute,
+  MovimentacoesTransferenciasRoute: MovimentacoesTransferenciasRoute,
+  MovimentacoesTrocaChequesRoute: MovimentacoesTrocaChequesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
