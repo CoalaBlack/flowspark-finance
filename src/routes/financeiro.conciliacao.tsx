@@ -24,7 +24,7 @@ function Page() {
             <span className="h-1 w-1 rounded-full bg-muted-foreground" />
             <span className="text-sm text-warning">1 divergência</span>
           </div>
-          <Button size="sm" className="bg-gradient-primary text-primary-foreground">Importar extrato</Button>
+          <Button size="sm" className="bg-gradient-primary text-primary-foreground" onClick={() => toast.info("Selecione um arquivo OFX/CSV", { description: "Recurso de importação em desenvolvimento." })}>Importar extrato</Button>
         </div>
         <table className="w-full">
           <thead>
