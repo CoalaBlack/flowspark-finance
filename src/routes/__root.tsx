@@ -101,6 +101,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const navigate = useNavigate();
   return (
     <QueryClientProvider client={queryClient}>
       <SidebarProvider>
@@ -114,21 +115,36 @@ function RootComponent() {
                 <input
                   placeholder="Buscar cliente, empréstimo, consultor..."
                   className="bg-transparent text-sm outline-none flex-1 placeholder:text-muted-foreground/60"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      const v = (e.target as HTMLInputElement).value;
+                      toast.info("Buscando...", { description: v || "Digite um termo" });
+                    }
+                  }}
                 />
                 <kbd className="text-[10px] text-muted-foreground border border-border/60 px-1.5 py-0.5 rounded">⌘K</kbd>
               </div>
               <div className="flex-1" />
-              <button className="relative h-9 w-9 rounded-lg hover:bg-muted/50 flex items-center justify-center transition-colors">
+              <button
+                onClick={() => toast.info("Notificações", { description: "Você não tem novas notificações." })}
+                className="relative h-9 w-9 rounded-lg hover:bg-muted/50 flex items-center justify-center transition-colors"
+                aria-label="Notificações"
+              >
                 <Bell className="h-4 w-4" />
                 <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-destructive animate-pulse" />
               </button>
-              <button className="h-9 w-9 rounded-lg hover:bg-muted/50 flex items-center justify-center transition-colors">
+              <button
+                onClick={() => navigate({ to: "/cadastros/usuarios" })}
+                className="h-9 w-9 rounded-lg hover:bg-muted/50 flex items-center justify-center transition-colors"
+                aria-label="Configurações"
+              >
                 <Settings className="h-4 w-4" />
               </button>
               <div className="h-9 w-9 rounded-lg bg-gradient-primary flex items-center justify-center text-xs font-bold text-primary-foreground shadow-glow">
                 AD
               </div>
             </header>
+
             <main className="flex-1 p-6">
               <Outlet />
             </main>
