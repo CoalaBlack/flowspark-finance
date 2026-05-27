@@ -16,6 +16,7 @@ import appCss from "../styles.css?url";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import { PerfTracker, PerfOverlay } from "@/components/perf-tracker";
 
 function NotFoundComponent() {
   return (
@@ -109,9 +110,11 @@ function RootComponent() {
   if (isConsultorApp) {
     return (
       <QueryClientProvider client={queryClient}>
+        <PerfTracker />
         <div className="min-h-screen bg-background">
           <Outlet />
         </div>
+        <PerfOverlay />
         <Toaster />
       </QueryClientProvider>
     );
@@ -119,6 +122,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <PerfTracker />
       <SidebarProvider>
         <div className="min-h-screen flex w-full">
           <AppSidebar />
@@ -171,6 +175,7 @@ function RootComponent() {
             </main>
           </div>
         </div>
+        <PerfOverlay />
         <Toaster />
       </SidebarProvider>
     </QueryClientProvider>

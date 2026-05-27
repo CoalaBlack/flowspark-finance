@@ -25,7 +25,6 @@ import { Route as FinanceiroContasReceberRouteImport } from './routes/financeiro
 import { Route as FinanceiroContasPagarRouteImport } from './routes/financeiro.contas-pagar'
 import { Route as FinanceiroConciliacaoRouteImport } from './routes/financeiro.conciliacao'
 import { Route as ConsultorRotaRouteImport } from './routes/consultor.rota'
-import { Route as ConsultorQrcodeRouteImport } from './routes/consultor.qrcode'
 import { Route as ConsultorNovoEmprestimoRouteImport } from './routes/consultor.novo-emprestimo'
 import { Route as ConsultorInformacoesRouteImport } from './routes/consultor.informacoes'
 import { Route as ConsultorFechamentoRouteImport } from './routes/consultor.fechamento'
@@ -140,11 +139,6 @@ const FinanceiroConciliacaoRoute = FinanceiroConciliacaoRouteImport.update({
 const ConsultorRotaRoute = ConsultorRotaRouteImport.update({
   id: '/consultor/rota',
   path: '/consultor/rota',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ConsultorQrcodeRoute = ConsultorQrcodeRouteImport.update({
-  id: '/consultor/qrcode',
-  path: '/consultor/qrcode',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConsultorNovoEmprestimoRoute = ConsultorNovoEmprestimoRouteImport.update({
@@ -322,7 +316,6 @@ export interface FileRoutesByFullPath {
   '/consultor/fechamento': typeof ConsultorFechamentoRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
-  '/consultor/qrcode': typeof ConsultorQrcodeRoute
   '/consultor/rota': typeof ConsultorRotaRoute
   '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
@@ -369,7 +362,6 @@ export interface FileRoutesByTo {
   '/consultor/fechamento': typeof ConsultorFechamentoRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
-  '/consultor/qrcode': typeof ConsultorQrcodeRoute
   '/consultor/rota': typeof ConsultorRotaRoute
   '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
@@ -417,7 +409,6 @@ export interface FileRoutesById {
   '/consultor/fechamento': typeof ConsultorFechamentoRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
-  '/consultor/qrcode': typeof ConsultorQrcodeRoute
   '/consultor/rota': typeof ConsultorRotaRoute
   '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
@@ -466,7 +457,6 @@ export interface FileRouteTypes {
     | '/consultor/fechamento'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
-    | '/consultor/qrcode'
     | '/consultor/rota'
     | '/financeiro/conciliacao'
     | '/financeiro/contas-pagar'
@@ -513,7 +503,6 @@ export interface FileRouteTypes {
     | '/consultor/fechamento'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
-    | '/consultor/qrcode'
     | '/consultor/rota'
     | '/financeiro/conciliacao'
     | '/financeiro/contas-pagar'
@@ -560,7 +549,6 @@ export interface FileRouteTypes {
     | '/consultor/fechamento'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
-    | '/consultor/qrcode'
     | '/consultor/rota'
     | '/financeiro/conciliacao'
     | '/financeiro/contas-pagar'
@@ -608,7 +596,6 @@ export interface RootRouteChildren {
   ConsultorFechamentoRoute: typeof ConsultorFechamentoRoute
   ConsultorInformacoesRoute: typeof ConsultorInformacoesRoute
   ConsultorNovoEmprestimoRoute: typeof ConsultorNovoEmprestimoRoute
-  ConsultorQrcodeRoute: typeof ConsultorQrcodeRoute
   ConsultorRotaRoute: typeof ConsultorRotaRoute
   FinanceiroConciliacaoRoute: typeof FinanceiroConciliacaoRoute
   FinanceiroContasPagarRoute: typeof FinanceiroContasPagarRoute
@@ -739,13 +726,6 @@ declare module '@tanstack/react-router' {
       path: '/consultor/rota'
       fullPath: '/consultor/rota'
       preLoaderRoute: typeof ConsultorRotaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/consultor/qrcode': {
-      id: '/consultor/qrcode'
-      path: '/consultor/qrcode'
-      fullPath: '/consultor/qrcode'
-      preLoaderRoute: typeof ConsultorQrcodeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/consultor/novo-emprestimo': {
@@ -976,7 +956,6 @@ const rootRouteChildren: RootRouteChildren = {
   ConsultorFechamentoRoute: ConsultorFechamentoRoute,
   ConsultorInformacoesRoute: ConsultorInformacoesRoute,
   ConsultorNovoEmprestimoRoute: ConsultorNovoEmprestimoRoute,
-  ConsultorQrcodeRoute: ConsultorQrcodeRoute,
   ConsultorRotaRoute: ConsultorRotaRoute,
   FinanceiroConciliacaoRoute: FinanceiroConciliacaoRoute,
   FinanceiroContasPagarRoute: FinanceiroContasPagarRoute,
