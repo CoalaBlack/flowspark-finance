@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/cobranca/novo-emprestimo")({ component: Page });
 
 function Page() {
+  const navigate = useNavigate();
   const [valor, setValor] = useState(1000);
   const [juros, setJuros] = useState(20);
   const [datas, setDatas] = useState<Date[]>([]);
