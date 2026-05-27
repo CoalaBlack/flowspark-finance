@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   CreditCard,
@@ -12,6 +13,8 @@ import {
   ArrowRight,
   Sparkles,
 } from "lucide-react";
+import { useEmprestimos } from "@/lib/emprestimos-store";
+import { Progress } from "@/components/ui/progress";
 
 export const Route = createFileRoute("/consultor/")({ component: Page });
 
