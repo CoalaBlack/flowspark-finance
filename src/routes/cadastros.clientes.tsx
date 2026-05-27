@@ -5,13 +5,14 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { useCrud } from "@/hooks/use-crud";
 
 export const Route = createFileRoute("/cadastros/clientes")({ component: Page });
 
 type Cliente = {
   id: number;
   nome: string;
-  status: "Ativo" | "Inativo";
+  status: "Ativo" | "Inativo" | string;
   avaliacao: string;
   estabelecimento: string;
   endereco: string;
@@ -43,21 +44,30 @@ function exportCSV(rows: Cliente[]) {
 
 function Page() {
   const [query, setQuery] = useState("");
-  const [data, setData] = useState<Cliente[]>(initial);
-  const filtered = data.filter((r) =>
+  const today = new Date().toLocaleDateString("pt-BR");
+  const crud = useCrud<Cliente>({
+    initial,
+    entityLabel: "Cliente",
+    newLabel: "Novo Cliente",
+    fields: [
+      { name: "nome", label: "Nome completo", required: true, colSpan: 2 },
+      { name: "status", label: "Status", type: "select", options: ["Ativo", "Inativo"], required: true },
+      { name: "avaliacao", label: "Avaliação", type: "select", options: ["Não informado", "Excelente", "Bom", "Regular", "Ruim"] },
+      { name: "estabelecimento", label: "Estabelecimento", placeholder: "Tipo / Nome" },
+      { name: "limite", label: "Limite de crédito (R$)", type: "number" },
+      { name: "endereco", label: "Endereço", colSpan: 2 },
+      { name: "bairro", label: "Bairro" },
+      { name: "cidade", label: "Cidade" },
+      { name: "celular", label: "Celular", type: "tel", placeholder: "(00)00000-0000" },
+      { name: "celular2", label: "Celular 2", type: "tel", placeholder: "(00)00000-0000" },
+      { name: "email", label: "Email", type: "email", colSpan: 2 },
+    ],
+    defaults: () => ({ status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", limite: 0, criadoEm: today }),
+  });
+
+  const filtered = crud.rows.filter((r) =>
     !query || Object.values(r).some((v) => String(v).toLowerCase().includes(query.toLowerCase())),
   );
-
-  const handleNew = () => toast.info("Novo cliente", { description: "Formulário de cadastro em desenvolvimento." });
-  const handleView = (r: Cliente) => toast.info(r.nome, { description: `${r.endereco} — ${r.celular}` });
-  const handleEdit = (r: Cliente) => toast.info("Editar cliente", { description: r.nome });
-  const handleDelete = (r: Cliente) => {
-    if (confirm(`Excluir cliente "${r.nome}"?`)) {
-      setData((p) => p.filter((x) => x.id !== r.id));
-      toast.success("Cliente excluído");
-    }
-  };
-
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -76,12 +86,12 @@ function Page() {
           <div className="ml-auto hidden md:flex items-center gap-3">
             <div className="rounded-2xl bg-primary-foreground/15 px-4 py-2 backdrop-blur ring-1 ring-primary-foreground/20">
               <p className="text-[10px] uppercase tracking-wider text-primary-foreground/80">Total</p>
-              <p className="text-xl font-bold text-primary-foreground">{data.length}</p>
+              <p className="text-xl font-bold text-primary-foreground">{crud.rows.length}</p>
             </div>
             <div className="rounded-2xl bg-primary-foreground/15 px-4 py-2 backdrop-blur ring-1 ring-primary-foreground/20">
               <p className="text-[10px] uppercase tracking-wider text-primary-foreground/80">Limite Total</p>
               <p className="text-xl font-bold text-primary-foreground">
-                R$ {data.reduce((a, b) => a + b.limite, 0).toLocaleString("pt-BR")}
+                R$ {crud.rows.reduce((a, b) => a + Number(b.limite || 0), 0).toLocaleString("pt-BR")}
               </p>
             </div>
           </div>
@@ -101,10 +111,9 @@ function Page() {
         </div>
         <Button variant="outline" size="sm" className="gap-2" onClick={() => { toast.success("Preparando impressão..."); setTimeout(() => window.print(), 200); }}><Printer className="h-4 w-4" />Imprimir</Button>
         <Button variant="outline" size="sm" className="gap-2" onClick={() => { exportCSV(filtered); toast.success("Exportado!"); }}><Download className="h-4 w-4" />Exportar</Button>
-        <Button size="sm" className="gap-2 bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-90" onClick={handleNew}>
+        <Button size="sm" className="gap-2 bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-90" onClick={crud.openCreate}>
           <Plus className="h-4 w-4" />Novo Cliente
         </Button>
-
       </div>
 
       {/* Table */}
@@ -113,7 +122,7 @@ function Page() {
           <table className="w-full min-w-[1400px]">
             <thead>
               <tr className="border-b border-border/50 bg-background/40">
-                {["Cliente","Status","Avaliação","Estabelecimento","Endereço","Bairro","Cidade","Celular","Celular 2","Email","Limite R$","Status","Criado em","Ações"].map((h, i) => (
+                {["Cliente","Status","Avaliação","Estabelecimento","Endereço","Bairro","Cidade","Celular","Celular 2","Email","Limite R$","Criado em","Ações"].map((h, i) => (
                   <th key={i} className="px-3 py-1.5 text-left text-[11px] uppercase tracking-wider text-muted-foreground font-semibold whitespace-nowrap">
                     {h}
                   </th>
@@ -132,7 +141,7 @@ function Page() {
                     </div>
                   </td>
                   <td className="px-3 py-1.5">
-                    <Badge variant="outline" className="border-success/40 text-success bg-success/5">{r.status}</Badge>
+                    <Badge variant="outline" className={r.status === "Ativo" ? "border-success/40 text-success bg-success/5" : "border-muted-foreground/40 text-muted-foreground"}>{r.status}</Badge>
                   </td>
                   <td className="px-3 py-1.5 text-sm text-muted-foreground italic">{r.avaliacao}</td>
                   <td className="px-3 py-1.5 text-sm text-muted-foreground italic">{r.estabelecimento}</td>
@@ -143,21 +152,18 @@ function Page() {
                   <td className="px-3 py-1.5 text-sm font-mono text-muted-foreground">{r.celular2 || "—"}</td>
                   <td className="px-3 py-1.5 text-sm text-muted-foreground">{r.email || "—"}</td>
                   <td className="px-3 py-1.5 text-sm font-semibold text-right tabular-nums">
-                    {r.limite.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                  </td>
-                  <td className="px-3 py-1.5">
-                    <Badge variant="outline" className="border-success/40 text-success bg-success/5">{r.status}</Badge>
+                    {Number(r.limite).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                   </td>
                   <td className="px-3 py-1.5 text-sm font-mono text-muted-foreground whitespace-nowrap">{r.criadoEm}</td>
                   <td className="px-3 py-1.5">
                     <div className="flex items-center gap-1 flex-nowrap whitespace-nowrap">
-                      <button onClick={() => handleView(r)} className="inline-flex items-center gap-1 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
+                      <button onClick={() => crud.openView(r)} className="inline-flex items-center gap-1 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Eye className="h-3 w-3" />Exibir
                       </button>
-                      <button onClick={() => handleEdit(r)} className="inline-flex items-center gap-1 rounded-md bg-muted hover:bg-muted/70 text-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
+                      <button onClick={() => crud.openEdit(r)} className="inline-flex items-center gap-1 rounded-md bg-muted hover:bg-muted/70 text-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Pencil className="h-3 w-3" />Editar
                       </button>
-                      <button onClick={() => handleDelete(r)} className="inline-flex items-center gap-1 rounded-md bg-destructive hover:opacity-90 text-destructive-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
+                      <button onClick={() => crud.remove(r)} className="inline-flex items-center gap-1 rounded-md bg-destructive hover:opacity-90 text-destructive-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Trash2 className="h-3 w-3" />Excluir
                       </button>
                     </div>
@@ -172,6 +178,8 @@ function Page() {
           <span>Atualizado agora</span>
         </div>
       </div>
+
+      {crud.dialog}
     </div>
   );
 }

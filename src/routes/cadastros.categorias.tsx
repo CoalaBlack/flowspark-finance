@@ -3,10 +3,13 @@ import { Tag } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { DataTable } from "@/components/data-table";
 import { Badge } from "@/components/ui/badge";
+import { useCrud } from "@/hooks/use-crud";
 
 export const Route = createFileRoute("/cadastros/categorias")({ component: Page });
 
-const data = [
+type Categoria = { id: number; nome: string; tipo: string; status: string };
+
+const initial: Categoria[] = [
   { id: 1, nome: "Empréstimo", tipo: "Receita", status: "Ativo" },
   { id: 2, nome: "Juros", tipo: "Receita", status: "Ativo" },
   { id: 3, nome: "Multas", tipo: "Receita", status: "Ativo" },
@@ -16,13 +19,29 @@ const data = [
 ];
 
 function Page() {
+  const crud = useCrud<Categoria>({
+    initial,
+    entityLabel: "Categoria",
+    newLabel: "Nova Categoria",
+    fields: [
+      { name: "nome", label: "Nome", required: true, placeholder: "Ex: Combustível" },
+      { name: "tipo", label: "Tipo", type: "select", options: ["Receita", "Despesa"], required: true },
+      { name: "status", label: "Status", type: "select", options: ["Ativo", "Inativo"], required: true },
+    ],
+    defaults: () => ({ tipo: "Receita", status: "Ativo" }),
+  });
+
   return (
     <div>
       <PageHeader title="Categorias" subtitle="Gerencie categorias de receitas e despesas." icon={Tag} />
       <DataTable
-        data={data}
+        data={crud.rows}
         newLabel="Nova Categoria"
-        onNew={() => {}}
+        exportName="categorias"
+        onNew={crud.openCreate}
+        onView={crud.openView}
+        onEdit={crud.openEdit}
+        onDelete={crud.remove}
         columns={[
           { key: "id", header: "ID", className: "w-20 font-mono text-muted-foreground" },
           { key: "nome", header: "Nome", render: (r) => <span className="font-medium">{r.nome}</span> },
@@ -47,6 +66,7 @@ function Page() {
           },
         ]}
       />
+      {crud.dialog}
     </div>
   );
 }

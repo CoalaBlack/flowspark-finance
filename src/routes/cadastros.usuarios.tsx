@@ -2,22 +2,43 @@ import { createFileRoute } from "@tanstack/react-router";
 import { UserCog } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { DataTable } from "@/components/data-table";
+import { useCrud } from "@/hooks/use-crud";
 
 export const Route = createFileRoute("/cadastros/usuarios")({ component: Page });
 
-const data = [
-  { id: 1, nome: "Douglas", email: "douglas.pacheco@live.com", criadoEm: "21/05/2026" },
-  { id: 2, nome: "Suporte", email: "suporte@ddti.com.br", criadoEm: "21/05/2026" },
+type Usuario = { id: number; nome: string; email: string; senha?: string; perfil?: string; criadoEm: string };
+
+const initial: Usuario[] = [
+  { id: 1, nome: "Douglas", email: "douglas.pacheco@live.com", perfil: "Administrador", criadoEm: "21/05/2026" },
+  { id: 2, nome: "Suporte", email: "suporte@ddti.com.br", perfil: "Suporte", criadoEm: "21/05/2026" },
 ];
 
 function Page() {
+  const today = new Date().toLocaleDateString("pt-BR");
+  const crud = useCrud<Usuario>({
+    initial,
+    entityLabel: "Usuário",
+    newLabel: "Novo Usuário",
+    fields: [
+      { name: "nome", label: "Nome", required: true },
+      { name: "email", label: "Email", type: "email", required: true },
+      { name: "perfil", label: "Perfil", type: "select", options: ["Administrador", "Consultor", "Suporte", "Financeiro"], required: true },
+      { name: "senha", label: "Senha", type: "password", placeholder: "••••••••" },
+    ],
+    defaults: () => ({ criadoEm: today, perfil: "Consultor" }),
+  });
+
   return (
     <div>
       <PageHeader title="Usuários" subtitle="Controle de acesso ao sistema." icon={UserCog} />
       <DataTable
-        data={data}
+        data={crud.rows}
         newLabel="Novo Usuário"
-        onNew={() => {}}
+        exportName="usuarios"
+        onNew={crud.openCreate}
+        onView={crud.openView}
+        onEdit={crud.openEdit}
+        onDelete={crud.remove}
         columns={[
           {
             key: "nome",
@@ -32,9 +53,11 @@ function Page() {
             ),
           },
           { key: "email", header: "Email", className: "font-mono text-muted-foreground" },
+          { key: "perfil", header: "Perfil" },
           { key: "criadoEm", header: "Criado em", className: "font-mono text-muted-foreground" },
         ]}
       />
+      {crud.dialog}
     </div>
   );
 }

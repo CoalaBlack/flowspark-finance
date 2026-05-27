@@ -64,7 +64,9 @@ export function DataTable<T extends { id: string | number }>({
   onDelete?: (row: T) => void;
 }) {
   const [query, setQuery] = useState("");
-  const [rows, setRows] = useState(data);
+  const [internalRows, setInternalRows] = useState(data);
+  // If parent supplies delete handler, treat `data` as the source of truth.
+  const rows = onDelete ? data : internalRows;
   const filtered = rows.filter((row) => {
     if (!query) return true;
     const keys = searchKeys ?? (Object.keys(row) as (keyof T)[]);
@@ -84,7 +86,7 @@ export function DataTable<T extends { id: string | number }>({
   const handleDelete = (row: T) => {
     if (onDelete) return onDelete(row);
     if (confirm("Tem certeza que deseja excluir este registro?")) {
-      setRows((prev) => prev.filter((r) => r.id !== row.id));
+      setInternalRows((prev) => prev.filter((r) => r.id !== row.id));
       toast.success("Registro excluído");
     }
   };
