@@ -151,13 +151,13 @@ function Page() {
                   <td className="px-3 py-1.5 text-sm font-mono text-muted-foreground whitespace-nowrap">{r.criadoEm}</td>
                   <td className="px-3 py-1.5">
                     <div className="flex items-center gap-1 flex-nowrap whitespace-nowrap">
-                      <button className="inline-flex items-center gap-1 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
+                      <button onClick={() => handleView(r)} className="inline-flex items-center gap-1 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Eye className="h-3 w-3" />Exibir
                       </button>
-                      <button className="inline-flex items-center gap-1 rounded-md bg-muted hover:bg-muted/70 text-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
+                      <button onClick={() => handleEdit(r)} className="inline-flex items-center gap-1 rounded-md bg-muted hover:bg-muted/70 text-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Pencil className="h-3 w-3" />Editar
                       </button>
-                      <button className="inline-flex items-center gap-1 rounded-md bg-destructive hover:opacity-90 text-destructive-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
+                      <button onClick={() => handleDelete(r)} className="inline-flex items-center gap-1 rounded-md bg-destructive hover:opacity-90 text-destructive-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Trash2 className="h-3 w-3" />Excluir
                       </button>
                     </div>
