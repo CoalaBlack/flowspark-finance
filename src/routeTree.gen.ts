@@ -25,8 +25,10 @@ import { Route as FinanceiroContasReceberRouteImport } from './routes/financeiro
 import { Route as FinanceiroContasPagarRouteImport } from './routes/financeiro.contas-pagar'
 import { Route as FinanceiroConciliacaoRouteImport } from './routes/financeiro.conciliacao'
 import { Route as ConsultorRotaRouteImport } from './routes/consultor.rota'
+import { Route as ConsultorQrcodeRouteImport } from './routes/consultor.qrcode'
 import { Route as ConsultorNovoEmprestimoRouteImport } from './routes/consultor.novo-emprestimo'
 import { Route as ConsultorInformacoesRouteImport } from './routes/consultor.informacoes'
+import { Route as ConsultorDespesaRouteImport } from './routes/consultor.despesa'
 import { Route as ConsultorDesfazerRouteImport } from './routes/consultor.desfazer'
 import { Route as ConsultorConsultarRouteImport } from './routes/consultor.consultar'
 import { Route as CobrancaTransferirRouteImport } from './routes/cobranca.transferir'
@@ -138,6 +140,11 @@ const ConsultorRotaRoute = ConsultorRotaRouteImport.update({
   path: '/consultor/rota',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConsultorQrcodeRoute = ConsultorQrcodeRouteImport.update({
+  id: '/consultor/qrcode',
+  path: '/consultor/qrcode',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConsultorNovoEmprestimoRoute = ConsultorNovoEmprestimoRouteImport.update({
   id: '/consultor/novo-emprestimo',
   path: '/consultor/novo-emprestimo',
@@ -146,6 +153,11 @@ const ConsultorNovoEmprestimoRoute = ConsultorNovoEmprestimoRouteImport.update({
 const ConsultorInformacoesRoute = ConsultorInformacoesRouteImport.update({
   id: '/consultor/informacoes',
   path: '/consultor/informacoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultorDespesaRoute = ConsultorDespesaRouteImport.update({
+  id: '/consultor/despesa',
+  path: '/consultor/despesa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConsultorDesfazerRoute = ConsultorDesfazerRouteImport.update({
@@ -292,8 +304,10 @@ export interface FileRoutesByFullPath {
   '/cobranca/transferir': typeof CobrancaTransferirRoute
   '/consultor/consultar': typeof ConsultorConsultarRoute
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
+  '/consultor/despesa': typeof ConsultorDespesaRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
+  '/consultor/qrcode': typeof ConsultorQrcodeRoute
   '/consultor/rota': typeof ConsultorRotaRoute
   '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
@@ -335,8 +349,10 @@ export interface FileRoutesByTo {
   '/cobranca/transferir': typeof CobrancaTransferirRoute
   '/consultor/consultar': typeof ConsultorConsultarRoute
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
+  '/consultor/despesa': typeof ConsultorDespesaRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
+  '/consultor/qrcode': typeof ConsultorQrcodeRoute
   '/consultor/rota': typeof ConsultorRotaRoute
   '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
@@ -379,8 +395,10 @@ export interface FileRoutesById {
   '/cobranca/transferir': typeof CobrancaTransferirRoute
   '/consultor/consultar': typeof ConsultorConsultarRoute
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
+  '/consultor/despesa': typeof ConsultorDespesaRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
+  '/consultor/qrcode': typeof ConsultorQrcodeRoute
   '/consultor/rota': typeof ConsultorRotaRoute
   '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
@@ -424,8 +442,10 @@ export interface FileRouteTypes {
     | '/cobranca/transferir'
     | '/consultor/consultar'
     | '/consultor/desfazer'
+    | '/consultor/despesa'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
+    | '/consultor/qrcode'
     | '/consultor/rota'
     | '/financeiro/conciliacao'
     | '/financeiro/contas-pagar'
@@ -467,8 +487,10 @@ export interface FileRouteTypes {
     | '/cobranca/transferir'
     | '/consultor/consultar'
     | '/consultor/desfazer'
+    | '/consultor/despesa'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
+    | '/consultor/qrcode'
     | '/consultor/rota'
     | '/financeiro/conciliacao'
     | '/financeiro/contas-pagar'
@@ -510,8 +532,10 @@ export interface FileRouteTypes {
     | '/cobranca/transferir'
     | '/consultor/consultar'
     | '/consultor/desfazer'
+    | '/consultor/despesa'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
+    | '/consultor/qrcode'
     | '/consultor/rota'
     | '/financeiro/conciliacao'
     | '/financeiro/contas-pagar'
@@ -554,8 +578,10 @@ export interface RootRouteChildren {
   CobrancaTransferirRoute: typeof CobrancaTransferirRoute
   ConsultorConsultarRoute: typeof ConsultorConsultarRoute
   ConsultorDesfazerRoute: typeof ConsultorDesfazerRoute
+  ConsultorDespesaRoute: typeof ConsultorDespesaRoute
   ConsultorInformacoesRoute: typeof ConsultorInformacoesRoute
   ConsultorNovoEmprestimoRoute: typeof ConsultorNovoEmprestimoRoute
+  ConsultorQrcodeRoute: typeof ConsultorQrcodeRoute
   ConsultorRotaRoute: typeof ConsultorRotaRoute
   FinanceiroConciliacaoRoute: typeof FinanceiroConciliacaoRoute
   FinanceiroContasPagarRoute: typeof FinanceiroContasPagarRoute
@@ -688,6 +714,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConsultorRotaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/consultor/qrcode': {
+      id: '/consultor/qrcode'
+      path: '/consultor/qrcode'
+      fullPath: '/consultor/qrcode'
+      preLoaderRoute: typeof ConsultorQrcodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/consultor/novo-emprestimo': {
       id: '/consultor/novo-emprestimo'
       path: '/consultor/novo-emprestimo'
@@ -700,6 +733,13 @@ declare module '@tanstack/react-router' {
       path: '/consultor/informacoes'
       fullPath: '/consultor/informacoes'
       preLoaderRoute: typeof ConsultorInformacoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultor/despesa': {
+      id: '/consultor/despesa'
+      path: '/consultor/despesa'
+      fullPath: '/consultor/despesa'
+      preLoaderRoute: typeof ConsultorDespesaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/consultor/desfazer': {
@@ -890,8 +930,10 @@ const rootRouteChildren: RootRouteChildren = {
   CobrancaTransferirRoute: CobrancaTransferirRoute,
   ConsultorConsultarRoute: ConsultorConsultarRoute,
   ConsultorDesfazerRoute: ConsultorDesfazerRoute,
+  ConsultorDespesaRoute: ConsultorDespesaRoute,
   ConsultorInformacoesRoute: ConsultorInformacoesRoute,
   ConsultorNovoEmprestimoRoute: ConsultorNovoEmprestimoRoute,
+  ConsultorQrcodeRoute: ConsultorQrcodeRoute,
   ConsultorRotaRoute: ConsultorRotaRoute,
   FinanceiroConciliacaoRoute: FinanceiroConciliacaoRoute,
   FinanceiroContasPagarRoute: FinanceiroContasPagarRoute,
@@ -912,3 +954,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
