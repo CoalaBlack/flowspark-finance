@@ -12,35 +12,58 @@ export const Route = createFileRoute("/cadastros/clientes")({ component: Page })
 type Cliente = {
   id: number;
   nome: string;
+  apelido: string;
+  cpf: string;
+  rg: string;
+  dataNascimento: string;
+  sexo: string;
+  estadoCivil: string;
+  nomeMae: string;
+  nomePai: string;
+  profissao: string;
+  rendaMensal: number;
+  empresa: string;
   status: "Ativo" | "Inativo" | string;
   avaliacao: string;
   estabelecimento: string;
+  cep: string;
   endereco: string;
+  numero: string;
+  complemento: string;
   bairro: string;
   cidade: string;
+  uf: string;
+  pontoReferencia: string;
   celular: string;
   celular2: string;
+  telefoneFixo: string;
   email: string;
+  referenciaNome: string;
+  referenciaTelefone: string;
+  referenciaParentesco: string;
   limite: number;
+  observacoes: string;
   criadoEm: string;
 };
 
 const initial: Cliente[] = [
-  { id: 1, nome: "Teste João", status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", endereco: "Rua Coronel Pacheco, 01 01", bairro: "Jardim Nova Tabôao", cidade: "Guarulhos", celular: "(11)85236-9800", celular2: "", email: "", limite: 500, criadoEm: "21/05/2026" },
-  { id: 2, nome: "Teste José", status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", endereco: "Rua Chanes, 10 10", bairro: "Jardim Santa Inês", cidade: "Guarulhos", celular: "(11)97978-9800", celular2: "", email: "", limite: 500, criadoEm: "22/05/2026" },
-  { id: 3, nome: "Teste Maria", status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", endereco: "Rua São Vicente das Minas, 10 10", bairro: "Jardim Nova Tabôao", cidade: "Guarulhos", celular: "(11)94978-9800", celular2: "", email: "", limite: 200, criadoEm: "22/05/2026" },
+  { id: 1, nome: "Teste João", apelido: "João", cpf: "123.456.789-00", rg: "12.345.678-9", dataNascimento: "1985-03-15", sexo: "Masculino", estadoCivil: "Casado(a)", nomeMae: "Maria Silva", nomePai: "José Silva", profissao: "Comerciante", rendaMensal: 3500, empresa: "Mercadinho do João", status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", cep: "07140-000", endereco: "Rua Coronel Pacheco", numero: "01", complemento: "Casa 01", bairro: "Jardim Nova Tabôao", cidade: "Guarulhos", uf: "SP", pontoReferencia: "Próximo ao mercado", celular: "(11)85236-9800", celular2: "", telefoneFixo: "", email: "", referenciaNome: "Pedro Souza", referenciaTelefone: "(11)98888-1111", referenciaParentesco: "Amigo", limite: 500, observacoes: "", criadoEm: "21/05/2026" },
+  { id: 2, nome: "Teste José", apelido: "Zé", cpf: "987.654.321-00", rg: "98.765.432-1", dataNascimento: "1978-08-22", sexo: "Masculino", estadoCivil: "Solteiro(a)", nomeMae: "Ana Santos", nomePai: "Carlos Santos", profissao: "Pedreiro", rendaMensal: 2800, empresa: "Autônomo", status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", cep: "07120-100", endereco: "Rua Chanes", numero: "10", complemento: "", bairro: "Jardim Santa Inês", cidade: "Guarulhos", uf: "SP", pontoReferencia: "", celular: "(11)97978-9800", celular2: "", telefoneFixo: "", email: "", referenciaNome: "", referenciaTelefone: "", referenciaParentesco: "", limite: 500, observacoes: "", criadoEm: "22/05/2026" },
+  { id: 3, nome: "Teste Maria", apelido: "Mari", cpf: "456.789.123-00", rg: "45.678.912-3", dataNascimento: "1990-11-05", sexo: "Feminino", estadoCivil: "Divorciado(a)", nomeMae: "Joana Costa", nomePai: "Antônio Costa", profissao: "Cabeleireira", rendaMensal: 2200, empresa: "Salão da Mari", status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", cep: "07150-200", endereco: "Rua São Vicente das Minas", numero: "10", complemento: "", bairro: "Jardim Nova Tabôao", cidade: "Guarulhos", uf: "SP", pontoReferencia: "", celular: "(11)94978-9800", celular2: "", telefoneFixo: "", email: "", referenciaNome: "", referenciaTelefone: "", referenciaParentesco: "", limite: 200, observacoes: "", criadoEm: "22/05/2026" },
 ];
 
 function exportCSV(rows: Cliente[]) {
-  const headers = ["Cliente","Status","Endereço","Bairro","Cidade","Celular","Email","Limite","Criado em"];
+  const headers = ["Cliente","CPF","RG","Nascimento","Status","CEP","Endereço","Nº","Bairro","Cidade","UF","Celular","Email","Profissão","Renda","Limite","Criado em"];
   const lines = [headers.join(";")];
-  rows.forEach((r) => lines.push([r.nome,r.status,r.endereco,r.bairro,r.cidade,r.celular,r.email,r.limite,r.criadoEm].map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`).join(";")));
+  rows.forEach((r) => lines.push([r.nome,r.cpf,r.rg,r.dataNascimento,r.status,r.cep,r.endereco,r.numero,r.bairro,r.cidade,r.uf,r.celular,r.email,r.profissao,r.rendaMensal,r.limite,r.criadoEm].map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`).join(";")));
   const blob = new Blob(["\uFEFF" + lines.join("\n")], { type: "text/csv;charset=utf-8;" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = "clientes.csv";
   a.click();
 }
+
+const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
 
 function Page() {
   const [query, setQuery] = useState("");
@@ -50,19 +73,46 @@ function Page() {
     entityLabel: "Cliente",
     newLabel: "Novo Cliente",
     fields: [
+      // Dados pessoais
       { name: "nome", label: "Nome completo", required: true, colSpan: 2 },
-      { name: "status", label: "Status", type: "select", options: ["Ativo", "Inativo"], required: true },
-      { name: "avaliacao", label: "Avaliação", type: "select", options: ["Não informado", "Excelente", "Bom", "Regular", "Ruim"] },
-      { name: "estabelecimento", label: "Estabelecimento", placeholder: "Tipo / Nome" },
-      { name: "limite", label: "Limite de crédito (R$)", type: "number" },
-      { name: "endereco", label: "Endereço", colSpan: 2 },
+      { name: "apelido", label: "Apelido" },
+      { name: "cpf", label: "CPF", placeholder: "000.000.000-00", required: true },
+      { name: "rg", label: "RG", placeholder: "00.000.000-0" },
+      { name: "dataNascimento", label: "Data de nascimento", type: "date" },
+      { name: "sexo", label: "Sexo", type: "select", options: ["Masculino", "Feminino", "Outro", "Prefiro não informar"] },
+      { name: "estadoCivil", label: "Estado civil", type: "select", options: ["Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)", "União estável"] },
+      { name: "nomeMae", label: "Nome da mãe", colSpan: 2 },
+      { name: "nomePai", label: "Nome do pai", colSpan: 2 },
+      // Profissional
+      { name: "profissao", label: "Profissão" },
+      { name: "empresa", label: "Empresa / Local de trabalho" },
+      { name: "rendaMensal", label: "Renda mensal (R$)", type: "number" },
+      { name: "estabelecimento", label: "Tipo de estabelecimento", placeholder: "Tipo / Nome" },
+      // Endereço
+      { name: "cep", label: "CEP", placeholder: "00000-000" },
+      { name: "endereco", label: "Endereço (Rua/Av)", colSpan: 2 },
+      { name: "numero", label: "Número" },
+      { name: "complemento", label: "Complemento" },
       { name: "bairro", label: "Bairro" },
       { name: "cidade", label: "Cidade" },
-      { name: "celular", label: "Celular", type: "tel", placeholder: "(00)00000-0000" },
+      { name: "uf", label: "UF", type: "select", options: UFS },
+      { name: "pontoReferencia", label: "Ponto de referência", colSpan: 2 },
+      // Contato
+      { name: "celular", label: "Celular", type: "tel", placeholder: "(00)00000-0000", required: true },
       { name: "celular2", label: "Celular 2", type: "tel", placeholder: "(00)00000-0000" },
+      { name: "telefoneFixo", label: "Telefone fixo", type: "tel", placeholder: "(00)0000-0000" },
       { name: "email", label: "Email", type: "email", colSpan: 2 },
+      // Referência
+      { name: "referenciaNome", label: "Referência - Nome" },
+      { name: "referenciaTelefone", label: "Referência - Telefone", type: "tel" },
+      { name: "referenciaParentesco", label: "Referência - Parentesco", placeholder: "Amigo, irmão, vizinho..." },
+      // Comerciais
+      { name: "status", label: "Status", type: "select", options: ["Ativo", "Inativo"], required: true },
+      { name: "avaliacao", label: "Avaliação", type: "select", options: ["Não informado", "Excelente", "Bom", "Regular", "Ruim"] },
+      { name: "limite", label: "Limite de crédito (R$)", type: "number" },
+      { name: "observacoes", label: "Observações", type: "textarea", colSpan: 2 },
     ],
-    defaults: () => ({ status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", limite: 0, criadoEm: today }),
+    defaults: () => ({ status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", uf: "SP", limite: 0, rendaMensal: 0, criadoEm: today }),
   });
 
   const filtered = crud.rows.filter((r) =>
