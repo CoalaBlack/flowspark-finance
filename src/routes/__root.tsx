@@ -16,7 +16,7 @@ import appCss from "../styles.css?url";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { PerfTracker, PerfOverlay } from "@/components/perf-tracker";
+import { PerfTracker } from "@/components/perf-tracker";
 
 function NotFoundComponent() {
   return (
@@ -114,7 +114,7 @@ function RootComponent() {
         <div className="min-h-screen bg-background">
           <Outlet />
         </div>
-        <PerfOverlay />
+        
         <Toaster />
       </QueryClientProvider>
     );
@@ -175,7 +175,7 @@ function RootComponent() {
             </main>
           </div>
         </div>
-        <PerfOverlay />
+        
         <Toaster />
       </SidebarProvider>
     </QueryClientProvider>
