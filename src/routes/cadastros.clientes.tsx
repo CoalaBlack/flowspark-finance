@@ -190,17 +190,19 @@ function Page() {
                       <span className="font-medium whitespace-nowrap">{r.nome}</span>
                     </div>
                   </td>
+                  <td className="px-3 py-1.5 text-sm font-mono whitespace-nowrap">{r.cpf || "—"}</td>
                   <td className="px-3 py-1.5">
                     <Badge variant="outline" className={r.status === "Ativo" ? "border-success/40 text-success bg-success/5" : "border-muted-foreground/40 text-muted-foreground"}>{r.status}</Badge>
                   </td>
                   <td className="px-3 py-1.5 text-sm text-muted-foreground italic">{r.avaliacao}</td>
                   <td className="px-3 py-1.5 text-sm text-muted-foreground italic">{r.estabelecimento}</td>
-                  <td className="px-3 py-1.5 text-sm whitespace-nowrap">{r.endereco}</td>
+                  <td className="px-3 py-1.5 text-sm whitespace-nowrap">{[r.endereco, r.numero].filter(Boolean).join(", ")}</td>
                   <td className="px-3 py-1.5 text-sm whitespace-nowrap">{r.bairro}</td>
                   <td className="px-3 py-1.5 text-sm">{r.cidade}</td>
+                  <td className="px-3 py-1.5 text-sm">{r.uf || "—"}</td>
                   <td className="px-3 py-1.5 text-sm font-mono whitespace-nowrap">{r.celular}</td>
-                  <td className="px-3 py-1.5 text-sm font-mono text-muted-foreground">{r.celular2 || "—"}</td>
                   <td className="px-3 py-1.5 text-sm text-muted-foreground">{r.email || "—"}</td>
+                  <td className="px-3 py-1.5 text-sm text-muted-foreground">{r.profissao || "—"}</td>
                   <td className="px-3 py-1.5 text-sm font-semibold text-right tabular-nums">
                     {Number(r.limite).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                   </td>
