@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  ScanBarcode,
   CreditCard,
   UserPlus,
   FolderOpen,
@@ -15,7 +14,6 @@ import { HomeShell } from "@/components/consultor/mobile-shell";
 export const Route = createFileRoute("/consultor/")({ component: Page });
 
 const items = [
-  { to: "/consultor/qrcode", label: "Escanear QRcode", icon: ScanBarcode },
   { to: "/consultor/despesa", label: "Cadastro Despesa", icon: CreditCard },
   { to: "/consultor/cadastrar-cliente", label: "Cadastrar Cliente", icon: UserPlus },
   { to: "/consultor/rota", label: "Rota Cobrança", icon: FolderOpen },
