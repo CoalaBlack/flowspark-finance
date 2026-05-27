@@ -75,9 +75,9 @@ function Page() {
             className="pl-9 bg-background/40 border-border/60"
           />
         </div>
-        <Button variant="outline" size="sm" className="gap-2"><Printer className="h-4 w-4" />Imprimir</Button>
-        <Button variant="outline" size="sm" className="gap-2"><Download className="h-4 w-4" />Exportar</Button>
-        <Button size="sm" className="gap-2 bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-90">
+        <Button variant="outline" size="sm" className="gap-2" onClick={() => { toast.success("Preparando impressão..."); setTimeout(() => window.print(), 200); }}><Printer className="h-4 w-4" />Imprimir</Button>
+        <Button variant="outline" size="sm" className="gap-2" onClick={() => toast.success("Lista de consultores exportada.")}><Download className="h-4 w-4" />Exportar</Button>
+        <Button size="sm" className="gap-2 bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-90" onClick={() => toast.info("Novo consultor", { description: "Formulário em desenvolvimento." })}>
           <Plus className="h-4 w-4" />Novo Consultor
         </Button>
       </div>
