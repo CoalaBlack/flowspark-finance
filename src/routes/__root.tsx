@@ -103,6 +103,20 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const navigate = useNavigate();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isConsultorApp = pathname.startsWith("/consultor");
+
+  if (isConsultorApp) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <div className="min-h-screen bg-background">
+          <Outlet />
+        </div>
+        <Toaster />
+      </QueryClientProvider>
+    );
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <SidebarProvider>
@@ -126,6 +140,12 @@ function RootComponent() {
                 <kbd className="text-[10px] text-muted-foreground border border-border/60 px-1.5 py-0.5 rounded">⌘K</kbd>
               </div>
               <div className="flex-1" />
+              <Link
+                to="/consultor"
+                className="hidden sm:inline-flex h-9 items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-3 text-xs font-semibold text-primary-glow hover:bg-primary/20 transition-colors"
+              >
+                📱 App Consultor
+              </Link>
               <button
                 onClick={() => toast.info("Notificações", { description: "Você não tem novas notificações." })}
                 className="relative h-9 w-9 rounded-lg hover:bg-muted/50 flex items-center justify-center transition-colors"
