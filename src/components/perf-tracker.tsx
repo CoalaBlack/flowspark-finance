@@ -62,39 +62,38 @@ export function usePerfLog() {
 /** Hook into the router and measure each navigation. */
 export function PerfTracker() {
   const router = useRouter();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const status = useRouterState({ select: (s) => s.status });
   const navStart = useRef<{ path: string; t: number } | null>(null);
 
-  // detect navigation start
   useEffect(() => {
-    return router.subscribe("onBeforeNavigate", (evt) => {
-      const to = evt.toLocation?.pathname ?? pathname;
+    const unsubBefore = router.subscribe("onBeforeNavigate", (evt) => {
+      const to = evt.toLocation?.pathname ?? "";
       navStart.current = { path: to, t: performance.now() };
     });
-  }, [router, pathname]);
-
-  // when status returns to idle, the route is loaded
-  useEffect(() => {
-    if (status !== "idle" || !navStart.current) return;
-    const { path, t } = navStart.current;
-    const navMs = performance.now() - t;
-    // measure first paint after settle using rAF
-    const paintStart = performance.now();
-    requestAnimationFrame(() => {
+    const unsubResolved = router.subscribe("onResolved", (evt) => {
+      const start = navStart.current;
+      if (!start) return;
+      const path = evt.toLocation?.pathname ?? start.path;
+      const navMs = performance.now() - start.t;
+      const paintStart = performance.now();
       requestAnimationFrame(() => {
-        const domReady = performance.now() - paintStart;
-        perfStore.push({
-          path,
-          startedAt: Date.now(),
-          navMs,
-          domReady,
-          duration: navMs + domReady,
+        requestAnimationFrame(() => {
+          const domReady = performance.now() - paintStart;
+          perfStore.push({
+            path,
+            startedAt: Date.now(),
+            navMs,
+            domReady,
+            duration: navMs + domReady,
+          });
         });
       });
+      navStart.current = null;
     });
-    navStart.current = null;
-  }, [status, pathname]);
+    return () => {
+      unsubBefore();
+      unsubResolved();
+    };
+  }, [router]);
 
   return null;
 }
