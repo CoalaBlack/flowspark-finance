@@ -16,6 +16,7 @@ import appCss from "../styles.css?url";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import { PerfTracker, PerfOverlay } from "@/components/perf-tracker";
 
 function NotFoundComponent() {
   return (
