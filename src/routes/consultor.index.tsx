@@ -39,6 +39,28 @@ const colorMap: Record<string, { bg: string; text: string; ring: string }> = {
 };
 
 function Page() {
+  const lista = useEmprestimos();
+  const hoje = new Date().toISOString().slice(0, 10);
+  const doDia = useMemo(() => lista.filter((e) => e.vencimentos.includes(hoje)), [lista, hoje]);
+  const [visitados, setVisitados] = useState<number[]>([]);
+  useEffect(() => {
+    try {
+      const all = JSON.parse(localStorage.getItem("gc.rota.visitados.v1") || "{}");
+      setVisitados(all[hoje] ?? []);
+    } catch { /* ignore */ }
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "gc.rota.visitados.v1") {
+        try {
+          const all = JSON.parse(e.newValue || "{}");
+          setVisitados(all[hoje] ?? []);
+        } catch { /* ignore */ }
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [hoje]);
+  const concluidos = doDia.filter((e) => visitados.includes(e.numero)).length;
+  const pct = doDia.length ? Math.round((concluidos / doDia.length) * 100) : 0;
   return (
     <div className="mx-auto min-h-screen w-full max-w-md bg-[#050614] text-slate-100 px-5 pt-6 pb-24 relative overflow-hidden">
       {/* ambient glows */}
