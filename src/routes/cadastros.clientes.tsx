@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { UserCircle2, Plus, Search, Printer, Download, Eye, Pencil, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -23,17 +24,40 @@ type Cliente = {
   criadoEm: string;
 };
 
-const data: Cliente[] = [
+const initial: Cliente[] = [
   { id: 1, nome: "Teste João", status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", endereco: "Rua Coronel Pacheco, 01 01", bairro: "Jardim Nova Tabôao", cidade: "Guarulhos", celular: "(11)85236-9800", celular2: "", email: "", limite: 500, criadoEm: "21/05/2026" },
   { id: 2, nome: "Teste José", status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", endereco: "Rua Chanes, 10 10", bairro: "Jardim Santa Inês", cidade: "Guarulhos", celular: "(11)97978-9800", celular2: "", email: "", limite: 500, criadoEm: "22/05/2026" },
   { id: 3, nome: "Teste Maria", status: "Ativo", avaliacao: "Não informado", estabelecimento: "Não informado", endereco: "Rua São Vicente das Minas, 10 10", bairro: "Jardim Nova Tabôao", cidade: "Guarulhos", celular: "(11)94978-9800", celular2: "", email: "", limite: 200, criadoEm: "22/05/2026" },
 ];
 
+function exportCSV(rows: Cliente[]) {
+  const headers = ["Cliente","Status","Endereço","Bairro","Cidade","Celular","Email","Limite","Criado em"];
+  const lines = [headers.join(";")];
+  rows.forEach((r) => lines.push([r.nome,r.status,r.endereco,r.bairro,r.cidade,r.celular,r.email,r.limite,r.criadoEm].map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`).join(";")));
+  const blob = new Blob(["\uFEFF" + lines.join("\n")], { type: "text/csv;charset=utf-8;" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "clientes.csv";
+  a.click();
+}
+
 function Page() {
   const [query, setQuery] = useState("");
+  const [data, setData] = useState<Cliente[]>(initial);
   const filtered = data.filter((r) =>
     !query || Object.values(r).some((v) => String(v).toLowerCase().includes(query.toLowerCase())),
   );
+
+  const handleNew = () => toast.info("Novo cliente", { description: "Formulário de cadastro em desenvolvimento." });
+  const handleView = (r: Cliente) => toast.info(r.nome, { description: `${r.endereco} — ${r.celular}` });
+  const handleEdit = (r: Cliente) => toast.info("Editar cliente", { description: r.nome });
+  const handleDelete = (r: Cliente) => {
+    if (confirm(`Excluir cliente "${r.nome}"?`)) {
+      setData((p) => p.filter((x) => x.id !== r.id));
+      toast.success("Cliente excluído");
+    }
+  };
+
 
   return (
     <div className="space-y-6 animate-fade-in">
