@@ -143,8 +143,22 @@ function Page() {
           </div>
 
           <div className="flex justify-end gap-2 pt-2 border-t border-border/40">
-            <Button variant="outline">Cancelar</Button>
-            <Button className="bg-gradient-primary text-primary-foreground shadow-glow">Criar empréstimo</Button>
+            <Button variant="outline" onClick={() => navigate({ to: "/cobranca/emprestimos" })}>Cancelar</Button>
+            <Button
+              className="bg-gradient-primary text-primary-foreground shadow-glow"
+              onClick={() => {
+                if (datas.length === 0) {
+                  toast.error("Selecione ao menos uma data de vencimento.");
+                  return;
+                }
+                toast.success("Empréstimo criado com sucesso!", {
+                  description: `${datas.length} parcela(s) de R$ ${parcela.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}.`,
+                });
+                setTimeout(() => navigate({ to: "/cobranca/emprestimos" }), 600);
+              }}
+            >
+              Criar empréstimo
+            </Button>
           </div>
         </div>
 
