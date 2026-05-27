@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Plus, Search, Printer, Download, MoreHorizontal, Pencil, Trash2, Eye } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -16,6 +17,29 @@ export type Column<T> = {
   className?: string;
 };
 
+function downloadCSV<T>(rows: T[], columns: Column<T>[], filename: string) {
+  const headers = columns.map((c) => c.header);
+  const lines = [headers.join(";")];
+  rows.forEach((row) => {
+    const r = row as Record<string, unknown>;
+    lines.push(
+      columns
+        .map((c) => {
+          const v = r[c.key as string];
+          return `"${String(v ?? "").replace(/"/g, '""')}"`;
+        })
+        .join(";"),
+    );
+  });
+  const blob = new Blob(["\uFEFF" + lines.join("\n")], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${filename}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 export function DataTable<T extends { id: string | number }>({
   columns,
   data,
@@ -23,6 +47,10 @@ export function DataTable<T extends { id: string | number }>({
   onNew,
   newLabel = "Novo",
   emptyMessage = "Nenhum registro encontrado",
+  exportName = "exportacao",
+  onView,
+  onEdit,
+  onDelete,
 }: {
   columns: Column<T>[];
   data: T[];
@@ -30,15 +58,36 @@ export function DataTable<T extends { id: string | number }>({
   onNew?: () => void;
   newLabel?: string;
   emptyMessage?: string;
+  exportName?: string;
+  onView?: (row: T) => void;
+  onEdit?: (row: T) => void;
+  onDelete?: (row: T) => void;
 }) {
   const [query, setQuery] = useState("");
-  const filtered = data.filter((row) => {
+  const [rows, setRows] = useState(data);
+  const filtered = rows.filter((row) => {
     if (!query) return true;
     const keys = searchKeys ?? (Object.keys(row) as (keyof T)[]);
     return keys.some((k) =>
       String(row[k] ?? "").toLowerCase().includes(query.toLowerCase()),
     );
   });
+
+  const handleView = (row: T) => {
+    if (onView) return onView(row);
+    toast.info("Visualizando registro", { description: `ID: ${row.id}` });
+  };
+  const handleEdit = (row: T) => {
+    if (onEdit) return onEdit(row);
+    toast.info("Editar registro", { description: `ID: ${row.id} — formulário em breve.` });
+  };
+  const handleDelete = (row: T) => {
+    if (onDelete) return onDelete(row);
+    if (confirm("Tem certeza que deseja excluir este registro?")) {
+      setRows((prev) => prev.filter((r) => r.id !== row.id));
+      toast.success("Registro excluído");
+    }
+  };
 
   return (
     <div className="rounded-2xl border border-border/50 bg-gradient-card overflow-hidden shadow-card animate-fade-in">
@@ -52,10 +101,26 @@ export function DataTable<T extends { id: string | number }>({
             className="pl-9 bg-background/40 border-border/60"
           />
         </div>
-        <Button variant="outline" size="sm" className="gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-2"
+          onClick={() => {
+            toast.success("Preparando impressão...");
+            setTimeout(() => window.print(), 200);
+          }}
+        >
           <Printer className="h-4 w-4" /> Imprimir
         </Button>
-        <Button variant="outline" size="sm" className="gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-2"
+          onClick={() => {
+            downloadCSV(filtered, columns, exportName);
+            toast.success("Exportação concluída", { description: `${filtered.length} registro(s) exportado(s).` });
+          }}
+        >
           <Download className="h-4 w-4" /> Exportar
         </Button>
         {onNew && (
@@ -113,9 +178,13 @@ export function DataTable<T extends { id: string | number }>({
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                      <DropdownMenuItem><Eye className="h-3.5 w-3.5 mr-2" />Consultar</DropdownMenuItem>
-                      <DropdownMenuItem><Pencil className="h-3.5 w-3.5 mr-2" />Editar</DropdownMenuItem>
-                      <DropdownMenuItem className="text-destructive">
+                      <DropdownMenuItem onClick={() => handleView(row)}>
+                        <Eye className="h-3.5 w-3.5 mr-2" />Consultar
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleEdit(row)}>
+                        <Pencil className="h-3.5 w-3.5 mr-2" />Editar
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="text-destructive" onClick={() => handleDelete(row)}>
                         <Trash2 className="h-3.5 w-3.5 mr-2" />Excluir
                       </DropdownMenuItem>
                     </DropdownMenuContent>

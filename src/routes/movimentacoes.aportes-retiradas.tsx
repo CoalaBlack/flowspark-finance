@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDownToLine, ArrowUpFromLine, Wallet } from "lucide-react";
+import { toast } from "sonner";
 import { useState } from "react";
 import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
@@ -94,7 +95,7 @@ function Page() {
           </div>
           <div className="mt-6 flex justify-end gap-2">
             <Button variant="outline" onClick={() => setOp(null)}>Cancelar</Button>
-            <Button className="bg-gradient-primary shadow-glow">Confirmar {op === "aporte" ? "Aporte" : "Retirada"}</Button>
+            <Button className="bg-gradient-primary shadow-glow" onClick={() => { toast.success(`${op === "aporte" ? "Aporte" : "Retirada"} registrado com sucesso!`); setOp(null); }}>Confirmar {op === "aporte" ? "Aporte" : "Retirada"}</Button>
           </div>
         </div>
       )}
