@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   CreditCard,
@@ -12,6 +13,8 @@ import {
   ArrowRight,
   Sparkles,
 } from "lucide-react";
+import { useEmprestimos } from "@/lib/emprestimos-store";
+import { Progress } from "@/components/ui/progress";
 
 export const Route = createFileRoute("/consultor/")({ component: Page });
 
@@ -36,6 +39,28 @@ const colorMap: Record<string, { bg: string; text: string; ring: string }> = {
 };
 
 function Page() {
+  const lista = useEmprestimos();
+  const hoje = new Date().toISOString().slice(0, 10);
+  const doDia = useMemo(() => lista.filter((e) => e.vencimentos.includes(hoje)), [lista, hoje]);
+  const [visitados, setVisitados] = useState<number[]>([]);
+  useEffect(() => {
+    try {
+      const all = JSON.parse(localStorage.getItem("gc.rota.visitados.v1") || "{}");
+      setVisitados(all[hoje] ?? []);
+    } catch { /* ignore */ }
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "gc.rota.visitados.v1") {
+        try {
+          const all = JSON.parse(e.newValue || "{}");
+          setVisitados(all[hoje] ?? []);
+        } catch { /* ignore */ }
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [hoje]);
+  const concluidos = doDia.filter((e) => visitados.includes(e.numero)).length;
+  const pct = doDia.length ? Math.round((concluidos / doDia.length) * 100) : 0;
   return (
     <div className="mx-auto min-h-screen w-full max-w-md bg-[#050614] text-slate-100 px-5 pt-6 pb-24 relative overflow-hidden">
       {/* ambient glows */}
@@ -80,6 +105,25 @@ function Page() {
           <ArrowRight className="h-5 w-5 text-indigo-300/70 group-hover:translate-x-0.5 transition" />
         </div>
       </Link>
+
+      {/* Progresso da rota do dia */}
+      <div className="mb-5 p-4 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-sm">
+        <div className="flex items-baseline justify-between mb-2">
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-slate-400">Progresso de hoje</div>
+            <div className="text-xs text-slate-300 mt-0.5">
+              {doDia.length === 0
+                ? "Sem cobranças hoje"
+                : `${concluidos} de ${doDia.length} visitas concluídas`}
+            </div>
+          </div>
+          <div className="font-display text-2xl font-bold bg-gradient-to-r from-indigo-300 to-violet-400 bg-clip-text text-transparent">
+            {pct}%
+          </div>
+        </div>
+        <Progress value={pct} className="h-2 bg-white/5" />
+      </div>
+
 
       {/* Action tiles */}
       <div className="grid grid-cols-2 gap-3 mb-7">
