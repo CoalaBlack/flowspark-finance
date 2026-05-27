@@ -122,6 +122,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <PerfTracker />
       <SidebarProvider>
         <div className="min-h-screen flex w-full">
           <AppSidebar />
@@ -174,6 +175,7 @@ function RootComponent() {
             </main>
           </div>
         </div>
+        <PerfOverlay />
         <Toaster />
       </SidebarProvider>
     </QueryClientProvider>
