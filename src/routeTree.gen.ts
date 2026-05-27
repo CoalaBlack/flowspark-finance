@@ -31,6 +31,7 @@ import { Route as ConsultorInformacoesRouteImport } from './routes/consultor.inf
 import { Route as ConsultorDespesaRouteImport } from './routes/consultor.despesa'
 import { Route as ConsultorDesfazerRouteImport } from './routes/consultor.desfazer'
 import { Route as ConsultorConsultarRouteImport } from './routes/consultor.consultar'
+import { Route as ConsultorCadastrarClienteRouteImport } from './routes/consultor.cadastrar-cliente'
 import { Route as CobrancaTransferirRouteImport } from './routes/cobranca.transferir'
 import { Route as CobrancaRenegociacoesRouteImport } from './routes/cobranca.renegociacoes'
 import { Route as CobrancaNovoEmprestimoRouteImport } from './routes/cobranca.novo-emprestimo'
@@ -170,6 +171,12 @@ const ConsultorConsultarRoute = ConsultorConsultarRouteImport.update({
   path: '/consultor/consultar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConsultorCadastrarClienteRoute =
+  ConsultorCadastrarClienteRouteImport.update({
+    id: '/consultor/cadastrar-cliente',
+    path: '/consultor/cadastrar-cliente',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CobrancaTransferirRoute = CobrancaTransferirRouteImport.update({
   id: '/cobranca/transferir',
   path: '/cobranca/transferir',
@@ -302,6 +309,7 @@ export interface FileRoutesByFullPath {
   '/cobranca/novo-emprestimo': typeof CobrancaNovoEmprestimoRoute
   '/cobranca/renegociacoes': typeof CobrancaRenegociacoesRoute
   '/cobranca/transferir': typeof CobrancaTransferirRoute
+  '/consultor/cadastrar-cliente': typeof ConsultorCadastrarClienteRoute
   '/consultor/consultar': typeof ConsultorConsultarRoute
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
   '/consultor/despesa': typeof ConsultorDespesaRoute
@@ -347,6 +355,7 @@ export interface FileRoutesByTo {
   '/cobranca/novo-emprestimo': typeof CobrancaNovoEmprestimoRoute
   '/cobranca/renegociacoes': typeof CobrancaRenegociacoesRoute
   '/cobranca/transferir': typeof CobrancaTransferirRoute
+  '/consultor/cadastrar-cliente': typeof ConsultorCadastrarClienteRoute
   '/consultor/consultar': typeof ConsultorConsultarRoute
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
   '/consultor/despesa': typeof ConsultorDespesaRoute
@@ -393,6 +402,7 @@ export interface FileRoutesById {
   '/cobranca/novo-emprestimo': typeof CobrancaNovoEmprestimoRoute
   '/cobranca/renegociacoes': typeof CobrancaRenegociacoesRoute
   '/cobranca/transferir': typeof CobrancaTransferirRoute
+  '/consultor/cadastrar-cliente': typeof ConsultorCadastrarClienteRoute
   '/consultor/consultar': typeof ConsultorConsultarRoute
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
   '/consultor/despesa': typeof ConsultorDespesaRoute
@@ -440,6 +450,7 @@ export interface FileRouteTypes {
     | '/cobranca/novo-emprestimo'
     | '/cobranca/renegociacoes'
     | '/cobranca/transferir'
+    | '/consultor/cadastrar-cliente'
     | '/consultor/consultar'
     | '/consultor/desfazer'
     | '/consultor/despesa'
@@ -485,6 +496,7 @@ export interface FileRouteTypes {
     | '/cobranca/novo-emprestimo'
     | '/cobranca/renegociacoes'
     | '/cobranca/transferir'
+    | '/consultor/cadastrar-cliente'
     | '/consultor/consultar'
     | '/consultor/desfazer'
     | '/consultor/despesa'
@@ -530,6 +542,7 @@ export interface FileRouteTypes {
     | '/cobranca/novo-emprestimo'
     | '/cobranca/renegociacoes'
     | '/cobranca/transferir'
+    | '/consultor/cadastrar-cliente'
     | '/consultor/consultar'
     | '/consultor/desfazer'
     | '/consultor/despesa'
@@ -576,6 +589,7 @@ export interface RootRouteChildren {
   CobrancaNovoEmprestimoRoute: typeof CobrancaNovoEmprestimoRoute
   CobrancaRenegociacoesRoute: typeof CobrancaRenegociacoesRoute
   CobrancaTransferirRoute: typeof CobrancaTransferirRoute
+  ConsultorCadastrarClienteRoute: typeof ConsultorCadastrarClienteRoute
   ConsultorConsultarRoute: typeof ConsultorConsultarRoute
   ConsultorDesfazerRoute: typeof ConsultorDesfazerRoute
   ConsultorDespesaRoute: typeof ConsultorDespesaRoute
@@ -756,6 +770,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConsultorConsultarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/consultor/cadastrar-cliente': {
+      id: '/consultor/cadastrar-cliente'
+      path: '/consultor/cadastrar-cliente'
+      fullPath: '/consultor/cadastrar-cliente'
+      preLoaderRoute: typeof ConsultorCadastrarClienteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cobranca/transferir': {
       id: '/cobranca/transferir'
       path: '/cobranca/transferir'
@@ -928,6 +949,7 @@ const rootRouteChildren: RootRouteChildren = {
   CobrancaNovoEmprestimoRoute: CobrancaNovoEmprestimoRoute,
   CobrancaRenegociacoesRoute: CobrancaRenegociacoesRoute,
   CobrancaTransferirRoute: CobrancaTransferirRoute,
+  ConsultorCadastrarClienteRoute: ConsultorCadastrarClienteRoute,
   ConsultorConsultarRoute: ConsultorConsultarRoute,
   ConsultorDesfazerRoute: ConsultorDesfazerRoute,
   ConsultorDespesaRoute: ConsultorDespesaRoute,
