@@ -28,6 +28,7 @@ import { Route as ConsultorRotaRouteImport } from './routes/consultor.rota'
 import { Route as ConsultorQrcodeRouteImport } from './routes/consultor.qrcode'
 import { Route as ConsultorNovoEmprestimoRouteImport } from './routes/consultor.novo-emprestimo'
 import { Route as ConsultorInformacoesRouteImport } from './routes/consultor.informacoes'
+import { Route as ConsultorFechamentoRouteImport } from './routes/consultor.fechamento'
 import { Route as ConsultorDespesaRouteImport } from './routes/consultor.despesa'
 import { Route as ConsultorDesfazerRouteImport } from './routes/consultor.desfazer'
 import { Route as ConsultorConsultarRouteImport } from './routes/consultor.consultar'
@@ -154,6 +155,11 @@ const ConsultorNovoEmprestimoRoute = ConsultorNovoEmprestimoRouteImport.update({
 const ConsultorInformacoesRoute = ConsultorInformacoesRouteImport.update({
   id: '/consultor/informacoes',
   path: '/consultor/informacoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultorFechamentoRoute = ConsultorFechamentoRouteImport.update({
+  id: '/consultor/fechamento',
+  path: '/consultor/fechamento',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConsultorDespesaRoute = ConsultorDespesaRouteImport.update({
@@ -313,6 +319,7 @@ export interface FileRoutesByFullPath {
   '/consultor/consultar': typeof ConsultorConsultarRoute
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
   '/consultor/despesa': typeof ConsultorDespesaRoute
+  '/consultor/fechamento': typeof ConsultorFechamentoRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
   '/consultor/qrcode': typeof ConsultorQrcodeRoute
@@ -359,6 +366,7 @@ export interface FileRoutesByTo {
   '/consultor/consultar': typeof ConsultorConsultarRoute
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
   '/consultor/despesa': typeof ConsultorDespesaRoute
+  '/consultor/fechamento': typeof ConsultorFechamentoRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
   '/consultor/qrcode': typeof ConsultorQrcodeRoute
@@ -406,6 +414,7 @@ export interface FileRoutesById {
   '/consultor/consultar': typeof ConsultorConsultarRoute
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
   '/consultor/despesa': typeof ConsultorDespesaRoute
+  '/consultor/fechamento': typeof ConsultorFechamentoRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
   '/consultor/qrcode': typeof ConsultorQrcodeRoute
@@ -454,6 +463,7 @@ export interface FileRouteTypes {
     | '/consultor/consultar'
     | '/consultor/desfazer'
     | '/consultor/despesa'
+    | '/consultor/fechamento'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
     | '/consultor/qrcode'
@@ -500,6 +510,7 @@ export interface FileRouteTypes {
     | '/consultor/consultar'
     | '/consultor/desfazer'
     | '/consultor/despesa'
+    | '/consultor/fechamento'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
     | '/consultor/qrcode'
@@ -546,6 +557,7 @@ export interface FileRouteTypes {
     | '/consultor/consultar'
     | '/consultor/desfazer'
     | '/consultor/despesa'
+    | '/consultor/fechamento'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
     | '/consultor/qrcode'
@@ -593,6 +605,7 @@ export interface RootRouteChildren {
   ConsultorConsultarRoute: typeof ConsultorConsultarRoute
   ConsultorDesfazerRoute: typeof ConsultorDesfazerRoute
   ConsultorDespesaRoute: typeof ConsultorDespesaRoute
+  ConsultorFechamentoRoute: typeof ConsultorFechamentoRoute
   ConsultorInformacoesRoute: typeof ConsultorInformacoesRoute
   ConsultorNovoEmprestimoRoute: typeof ConsultorNovoEmprestimoRoute
   ConsultorQrcodeRoute: typeof ConsultorQrcodeRoute
@@ -747,6 +760,13 @@ declare module '@tanstack/react-router' {
       path: '/consultor/informacoes'
       fullPath: '/consultor/informacoes'
       preLoaderRoute: typeof ConsultorInformacoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultor/fechamento': {
+      id: '/consultor/fechamento'
+      path: '/consultor/fechamento'
+      fullPath: '/consultor/fechamento'
+      preLoaderRoute: typeof ConsultorFechamentoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/consultor/despesa': {
@@ -953,6 +973,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConsultorConsultarRoute: ConsultorConsultarRoute,
   ConsultorDesfazerRoute: ConsultorDesfazerRoute,
   ConsultorDespesaRoute: ConsultorDespesaRoute,
+  ConsultorFechamentoRoute: ConsultorFechamentoRoute,
   ConsultorInformacoesRoute: ConsultorInformacoesRoute,
   ConsultorNovoEmprestimoRoute: ConsultorNovoEmprestimoRoute,
   ConsultorQrcodeRoute: ConsultorQrcodeRoute,
