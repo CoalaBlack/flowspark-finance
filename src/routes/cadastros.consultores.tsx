@@ -4,7 +4,7 @@ import { Bike, Plus, Search, Printer, Download, Eye, Pencil, Trash2, ArrowDownUp
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
+import { useCrud } from "@/hooks/use-crud";
 
 export const Route = createFileRoute("/cadastros/consultores")({ component: Page });
 
@@ -24,14 +24,35 @@ type Consultor = {
   saldo: number;
 };
 
-const data: Consultor[] = [
+const initial: Consultor[] = [
   { id: 1, nome: "Douglas", cep: "00000-000", endereco: "Não informado", bairro: "Não informado", complemento: "Não informado", cidade: "Não informado", fone: "(00)0000-0000", celular: "(00)00000-0000", usuarioApp: "douglas", senhaApp: "dudux", cpf: "", saldo: 0 },
   { id: 2, nome: "Rodrigo", cep: "07134-380", endereco: "Rua Dores R. Pedras", bairro: "Jardim Santa Emilia", complemento: "", cidade: "Guarulhos", fone: "", celular: "(11)94545-8877", usuarioApp: "rodrigo", senhaApp: "mane", cpf: "333.477.112-33", saldo: 28998 },
 ];
 
 function Page() {
   const [query, setQuery] = useState("");
-  const filtered = data.filter((r) =>
+  const crud = useCrud<Consultor>({
+    initial,
+    entityLabel: "Consultor",
+    newLabel: "Novo Consultor",
+    fields: [
+      { name: "nome", label: "Nome completo", required: true, colSpan: 2 },
+      { name: "cpf", label: "CPF", placeholder: "000.000.000-00" },
+      { name: "celular", label: "Celular", type: "tel", required: true, placeholder: "(00)00000-0000" },
+      { name: "fone", label: "Telefone fixo", type: "tel", placeholder: "(00)0000-0000" },
+      { name: "cep", label: "CEP", placeholder: "00000-000" },
+      { name: "endereco", label: "Endereço", colSpan: 2 },
+      { name: "bairro", label: "Bairro" },
+      { name: "cidade", label: "Cidade" },
+      { name: "complemento", label: "Complemento", colSpan: 2 },
+      { name: "usuarioApp", label: "Usuário do app", required: true },
+      { name: "senhaApp", label: "Senha do app", type: "password", required: true },
+      { name: "saldo", label: "Saldo inicial (R$)", type: "number" },
+    ],
+    defaults: () => ({ saldo: 0 }),
+  });
+
+  const filtered = crud.rows.filter((r) =>
     !query || Object.values(r).some((v) => String(v).toLowerCase().includes(query.toLowerCase())),
   );
 
@@ -52,12 +73,12 @@ function Page() {
           <div className="ml-auto hidden md:flex items-center gap-3">
             <div className="rounded-2xl bg-primary-foreground/15 px-4 py-2 backdrop-blur ring-1 ring-primary-foreground/20">
               <p className="text-[10px] uppercase tracking-wider text-primary-foreground/80">Consultores</p>
-              <p className="text-xl font-bold text-primary-foreground">{data.length}</p>
+              <p className="text-xl font-bold text-primary-foreground">{crud.rows.length}</p>
             </div>
             <div className="rounded-2xl bg-primary-foreground/15 px-4 py-2 backdrop-blur ring-1 ring-primary-foreground/20">
               <p className="text-[10px] uppercase tracking-wider text-primary-foreground/80">Saldo Total</p>
               <p className="text-xl font-bold text-primary-foreground">
-                R$ {data.reduce((a, b) => a + b.saldo, 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                R$ {crud.rows.reduce((a, b) => a + Number(b.saldo || 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
               </p>
             </div>
           </div>
@@ -77,7 +98,7 @@ function Page() {
         </div>
         <Button variant="outline" size="sm" className="gap-2" onClick={() => { toast.success("Preparando impressão..."); setTimeout(() => window.print(), 200); }}><Printer className="h-4 w-4" />Imprimir</Button>
         <Button variant="outline" size="sm" className="gap-2" onClick={() => toast.success("Lista de consultores exportada.")}><Download className="h-4 w-4" />Exportar</Button>
-        <Button size="sm" className="gap-2 bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-90" onClick={() => toast.info("Novo consultor", { description: "Formulário em desenvolvimento." })}>
+        <Button size="sm" className="gap-2 bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-90" onClick={crud.openCreate}>
           <Plus className="h-4 w-4" />Novo Consultor
         </Button>
       </div>
@@ -117,7 +138,7 @@ function Page() {
                   <td className="px-3 py-1.5 text-sm font-mono text-muted-foreground">{"•".repeat(r.senhaApp.length)}</td>
                   <td className="px-3 py-1.5 text-sm font-mono whitespace-nowrap">{r.cpf || "—"}</td>
                   <td className="px-3 py-1.5 text-sm font-semibold text-right tabular-nums whitespace-nowrap">
-                    {r.saldo.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                    {Number(r.saldo).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                   </td>
                   <td className="px-3 py-1.5">
                     <div className="h-7 w-7 rounded-md border border-dashed border-border/70 bg-background/40 flex items-center justify-center text-muted-foreground">
@@ -126,16 +147,16 @@ function Page() {
                   </td>
                   <td className="px-3 py-1.5">
                     <div className="flex items-center gap-1 flex-nowrap whitespace-nowrap">
-                      <button onClick={() => toast.info("Adição / Retirada", { description: r.nome })} className="inline-flex items-center gap-1 rounded-md bg-gradient-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm hover:opacity-90 transition">
+                      <button onClick={() => toast.info("Adição / Retirada", { description: `${r.nome} — abrindo movimentação...` })} className="inline-flex items-center gap-1 rounded-md bg-gradient-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm hover:opacity-90 transition">
                         <ArrowDownUp className="h-3 w-3" />Adição / Retirada
                       </button>
-                      <button onClick={() => toast.info(r.nome, { description: `${r.cidade} — ${r.celular}` })} className="inline-flex items-center gap-1 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
+                      <button onClick={() => crud.openView(r)} className="inline-flex items-center gap-1 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Eye className="h-3 w-3" />Exibir
                       </button>
-                      <button onClick={() => toast.info("Editar consultor", { description: r.nome })} className="inline-flex items-center gap-1 rounded-md bg-muted hover:bg-muted/70 text-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
+                      <button onClick={() => crud.openEdit(r)} className="inline-flex items-center gap-1 rounded-md bg-muted hover:bg-muted/70 text-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Pencil className="h-3 w-3" />Editar
                       </button>
-                      <button onClick={() => confirm(`Excluir "${r.nome}"?`) && toast.success("Consultor removido")} className="inline-flex items-center gap-1 rounded-md bg-destructive hover:opacity-90 text-destructive-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
+                      <button onClick={() => crud.remove(r)} className="inline-flex items-center gap-1 rounded-md bg-destructive hover:opacity-90 text-destructive-foreground text-[10px] font-bold uppercase tracking-wide px-2 py-1 shadow-sm transition">
                         <Trash2 className="h-3 w-3" />Excluir
                       </button>
                     </div>
@@ -150,6 +171,8 @@ function Page() {
           <span>Atualizado agora</span>
         </div>
       </div>
+
+      {crud.dialog}
     </div>
   );
 }
