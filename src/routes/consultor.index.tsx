@@ -106,6 +106,25 @@ function Page() {
         </div>
       </Link>
 
+      {/* Progresso da rota do dia */}
+      <div className="mb-5 p-4 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-sm">
+        <div className="flex items-baseline justify-between mb-2">
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-slate-400">Progresso de hoje</div>
+            <div className="text-xs text-slate-300 mt-0.5">
+              {doDia.length === 0
+                ? "Sem cobranças hoje"
+                : `${concluidos} de ${doDia.length} visitas concluídas`}
+            </div>
+          </div>
+          <div className="font-display text-2xl font-bold bg-gradient-to-r from-indigo-300 to-violet-400 bg-clip-text text-transparent">
+            {pct}%
+          </div>
+        </div>
+        <Progress value={pct} className="h-2 bg-white/5" />
+      </div>
+
+
       {/* Action tiles */}
       <div className="grid grid-cols-2 gap-3 mb-7">
         {tiles.map((t, i) => {
