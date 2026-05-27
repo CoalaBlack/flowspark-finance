@@ -110,9 +110,11 @@ function RootComponent() {
   if (isConsultorApp) {
     return (
       <QueryClientProvider client={queryClient}>
+        <PerfTracker />
         <div className="min-h-screen bg-background">
           <Outlet />
         </div>
+        <PerfOverlay />
         <Toaster />
       </QueryClientProvider>
     );
