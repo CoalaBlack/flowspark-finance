@@ -24,6 +24,7 @@ import { Route as FinanceiroFluxoCaixaRouteImport } from './routes/financeiro.fl
 import { Route as FinanceiroContasReceberRouteImport } from './routes/financeiro.contas-receber'
 import { Route as FinanceiroContasPagarRouteImport } from './routes/financeiro.contas-pagar'
 import { Route as FinanceiroConciliacaoRouteImport } from './routes/financeiro.conciliacao'
+import { Route as ConsultorRotaRouteImport } from './routes/consultor.rota'
 import { Route as ConsultorNovoEmprestimoRouteImport } from './routes/consultor.novo-emprestimo'
 import { Route as ConsultorInformacoesRouteImport } from './routes/consultor.informacoes'
 import { Route as ConsultorDesfazerRouteImport } from './routes/consultor.desfazer'
@@ -130,6 +131,11 @@ const FinanceiroContasPagarRoute = FinanceiroContasPagarRouteImport.update({
 const FinanceiroConciliacaoRoute = FinanceiroConciliacaoRouteImport.update({
   id: '/financeiro/conciliacao',
   path: '/financeiro/conciliacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultorRotaRoute = ConsultorRotaRouteImport.update({
+  id: '/consultor/rota',
+  path: '/consultor/rota',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConsultorNovoEmprestimoRoute = ConsultorNovoEmprestimoRouteImport.update({
@@ -288,6 +294,7 @@ export interface FileRoutesByFullPath {
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
+  '/consultor/rota': typeof ConsultorRotaRoute
   '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
   '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
@@ -330,6 +337,7 @@ export interface FileRoutesByTo {
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
+  '/consultor/rota': typeof ConsultorRotaRoute
   '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
   '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
@@ -373,6 +381,7 @@ export interface FileRoutesById {
   '/consultor/desfazer': typeof ConsultorDesfazerRoute
   '/consultor/informacoes': typeof ConsultorInformacoesRoute
   '/consultor/novo-emprestimo': typeof ConsultorNovoEmprestimoRoute
+  '/consultor/rota': typeof ConsultorRotaRoute
   '/financeiro/conciliacao': typeof FinanceiroConciliacaoRoute
   '/financeiro/contas-pagar': typeof FinanceiroContasPagarRoute
   '/financeiro/contas-receber': typeof FinanceiroContasReceberRoute
@@ -417,6 +426,7 @@ export interface FileRouteTypes {
     | '/consultor/desfazer'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
+    | '/consultor/rota'
     | '/financeiro/conciliacao'
     | '/financeiro/contas-pagar'
     | '/financeiro/contas-receber'
@@ -459,6 +469,7 @@ export interface FileRouteTypes {
     | '/consultor/desfazer'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
+    | '/consultor/rota'
     | '/financeiro/conciliacao'
     | '/financeiro/contas-pagar'
     | '/financeiro/contas-receber'
@@ -501,6 +512,7 @@ export interface FileRouteTypes {
     | '/consultor/desfazer'
     | '/consultor/informacoes'
     | '/consultor/novo-emprestimo'
+    | '/consultor/rota'
     | '/financeiro/conciliacao'
     | '/financeiro/contas-pagar'
     | '/financeiro/contas-receber'
@@ -544,6 +556,7 @@ export interface RootRouteChildren {
   ConsultorDesfazerRoute: typeof ConsultorDesfazerRoute
   ConsultorInformacoesRoute: typeof ConsultorInformacoesRoute
   ConsultorNovoEmprestimoRoute: typeof ConsultorNovoEmprestimoRoute
+  ConsultorRotaRoute: typeof ConsultorRotaRoute
   FinanceiroConciliacaoRoute: typeof FinanceiroConciliacaoRoute
   FinanceiroContasPagarRoute: typeof FinanceiroContasPagarRoute
   FinanceiroContasReceberRoute: typeof FinanceiroContasReceberRoute
@@ -666,6 +679,13 @@ declare module '@tanstack/react-router' {
       path: '/financeiro/conciliacao'
       fullPath: '/financeiro/conciliacao'
       preLoaderRoute: typeof FinanceiroConciliacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultor/rota': {
+      id: '/consultor/rota'
+      path: '/consultor/rota'
+      fullPath: '/consultor/rota'
+      preLoaderRoute: typeof ConsultorRotaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/consultor/novo-emprestimo': {
@@ -872,6 +892,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConsultorDesfazerRoute: ConsultorDesfazerRoute,
   ConsultorInformacoesRoute: ConsultorInformacoesRoute,
   ConsultorNovoEmprestimoRoute: ConsultorNovoEmprestimoRoute,
+  ConsultorRotaRoute: ConsultorRotaRoute,
   FinanceiroConciliacaoRoute: FinanceiroConciliacaoRoute,
   FinanceiroContasPagarRoute: FinanceiroContasPagarRoute,
   FinanceiroContasReceberRoute: FinanceiroContasReceberRoute,
