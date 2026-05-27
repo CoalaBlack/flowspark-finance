@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Bike, Plus, Search, Printer, Download, Eye, Pencil, Trash2, ArrowDownUp, ImageOff } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
 
 export const Route = createFileRoute("/cadastros/consultores")({ component: Page });
 
