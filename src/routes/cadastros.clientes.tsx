@@ -172,7 +172,7 @@ function Page() {
           <table className="w-full min-w-[1400px]">
             <thead>
               <tr className="border-b border-border/50 bg-background/40">
-                {["Cliente","Status","Avaliação","Estabelecimento","Endereço","Bairro","Cidade","Celular","Celular 2","Email","Limite R$","Criado em","Ações"].map((h, i) => (
+                {["Cliente","CPF","Status","Avaliação","Estabelecimento","Endereço","Bairro","Cidade","UF","Celular","Email","Profissão","Limite R$","Criado em","Ações"].map((h, i) => (
                   <th key={i} className="px-3 py-1.5 text-left text-[11px] uppercase tracking-wider text-muted-foreground font-semibold whitespace-nowrap">
                     {h}
                   </th>
