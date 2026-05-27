@@ -46,6 +46,7 @@ import { Route as CadastrosCategoriasRouteImport } from './routes/cadastros.cate
 import { Route as AnaliseRotasRouteImport } from './routes/analise.rotas'
 import { Route as AnaliseEmprestimosRouteImport } from './routes/analise.emprestimos'
 import { Route as AnaliseConsultoresRouteImport } from './routes/analise.consultores'
+import { Route as ConsultorEditarNumeroRouteImport } from './routes/consultor.editar.$numero'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -243,6 +244,11 @@ const AnaliseConsultoresRoute = AnaliseConsultoresRouteImport.update({
   path: '/analise/consultores',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConsultorEditarNumeroRoute = ConsultorEditarNumeroRouteImport.update({
+  id: '/consultor/editar/$numero',
+  path: '/consultor/editar/$numero',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -282,6 +288,7 @@ export interface FileRoutesByFullPath {
   '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
   '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
   '/consultor/': typeof ConsultorIndexRoute
+  '/consultor/editar/$numero': typeof ConsultorEditarNumeroRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -321,6 +328,7 @@ export interface FileRoutesByTo {
   '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
   '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
   '/consultor': typeof ConsultorIndexRoute
+  '/consultor/editar/$numero': typeof ConsultorEditarNumeroRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -361,6 +369,7 @@ export interface FileRoutesById {
   '/movimentacoes/transferencias': typeof MovimentacoesTransferenciasRoute
   '/movimentacoes/troca-cheques': typeof MovimentacoesTrocaChequesRoute
   '/consultor/': typeof ConsultorIndexRoute
+  '/consultor/editar/$numero': typeof ConsultorEditarNumeroRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -402,6 +411,7 @@ export interface FileRouteTypes {
     | '/movimentacoes/transferencias'
     | '/movimentacoes/troca-cheques'
     | '/consultor/'
+    | '/consultor/editar/$numero'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -441,6 +451,7 @@ export interface FileRouteTypes {
     | '/movimentacoes/transferencias'
     | '/movimentacoes/troca-cheques'
     | '/consultor'
+    | '/consultor/editar/$numero'
   id:
     | '__root__'
     | '/'
@@ -480,6 +491,7 @@ export interface FileRouteTypes {
     | '/movimentacoes/transferencias'
     | '/movimentacoes/troca-cheques'
     | '/consultor/'
+    | '/consultor/editar/$numero'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -520,6 +532,7 @@ export interface RootRouteChildren {
   MovimentacoesTransferenciasRoute: typeof MovimentacoesTransferenciasRoute
   MovimentacoesTrocaChequesRoute: typeof MovimentacoesTrocaChequesRoute
   ConsultorIndexRoute: typeof ConsultorIndexRoute
+  ConsultorEditarNumeroRoute: typeof ConsultorEditarNumeroRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -783,6 +796,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnaliseConsultoresRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/consultor/editar/$numero': {
+      id: '/consultor/editar/$numero'
+      path: '/consultor/editar/$numero'
+      fullPath: '/consultor/editar/$numero'
+      preLoaderRoute: typeof ConsultorEditarNumeroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -824,6 +844,7 @@ const rootRouteChildren: RootRouteChildren = {
   MovimentacoesTransferenciasRoute: MovimentacoesTransferenciasRoute,
   MovimentacoesTrocaChequesRoute: MovimentacoesTrocaChequesRoute,
   ConsultorIndexRoute: ConsultorIndexRoute,
+  ConsultorEditarNumeroRoute: ConsultorEditarNumeroRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
