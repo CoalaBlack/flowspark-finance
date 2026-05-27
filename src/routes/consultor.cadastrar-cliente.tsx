@@ -13,7 +13,7 @@ export const Route = createFileRoute("/consultor/cadastrar-cliente")({ component
 
 type FotoSlot = "rgFrente" | "rgVerso" | "cpfDoc" | "compResidencia" | "selfie";
 
-const ufs = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+const ufs = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
 
 function Page() {
   const navigate = useNavigate();
